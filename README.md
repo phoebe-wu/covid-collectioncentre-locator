@@ -1,11 +1,16 @@
-# My Personal Project
+# COVID-19 BC Collection Center Locator
 
-## A subtitle
+## 
+A simple search application that allows people who have been exposed to Covid-19 to locate a Covid-19 Collection Center
+in BC in order to get tested. The application will allow users to search for a collection center in their city and will
+provide the following information:
+- Name
+- Address
+- Phone Number
+- City
+- Whether an appointment is required
+- Whether the center is open on weekends
+- Whether the center is drive-through
+- Whether the center tests children
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
-
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+I am interested in this project because I think an application like this is mandatory in a time like this.

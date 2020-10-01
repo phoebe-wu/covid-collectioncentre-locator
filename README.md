@@ -20,4 +20,4 @@ I am interested in this project because I think an application like this is mand
 - As a user, I want to be able to view all centers in a city.
 - As a user, I want to be able to view all centers in a city that do drive-through testing.
 - As a user, I want to be able to select a center and view the center's information in detail.
-- As a user, I want to be able to select a center and rate how long I waited.
+- As a user, I want to be able to select a center and add it to a "star" list.

@@ -8,16 +8,17 @@ provide the following information:
 - Address
 - Phone number
 - City
-- Opening hours
+- Health Authority
 - Whether an appointment is required
 - Whether the center is open on weekends
 - Whether the center is drive-through
 - Whether the center tests children
+- Whether the center needs referral
 
 I am interested in this project because I think an application like this is mandatory at a time like this.
 
 ## User Stories
 - As a user, I want to be able to view all centers in a city.
 - As a user, I want to be able to view all centers in a city that do drive-through testing.
-- As a user, I want to be able to select a center and view the center's information in detail.
-- As a user, I want to be able to select a center and add it to a "star" list.
+- As a user, I want to be able to view all centers in a health authority.
+- As a user, I want to be able to select a center and add it to a "favourites" list.

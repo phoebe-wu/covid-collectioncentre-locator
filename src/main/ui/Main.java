@@ -8,26 +8,7 @@ import model.HealthAuthority;
 public class Main {
     public static void main(String[] args) {
         CollectionCentreHub hub = new CollectionCentreHub();
-        initializeCollectionCentres1(hub);
-        initializeCollectionCentres2(hub);
-        initializeCollectionCentres3(hub);
-        initializeCollectionCentres4(hub);
-        initializeCollectionCentres5(hub);
-        initializeCollectionCentres6(hub);
-        initializeCollectionCentres7(hub);
-        initializeCollectionCentres8(hub);
-        initializeCollectionCentres9(hub);
-        initializeCollectionCentres10(hub);
-        initializeCollectionCentres11(hub);
-        initializeCollectionCentres12(hub);
-        initializeCollectionCentres13(hub);
-        initializeCollectionCentres14(hub);
-        initializeCollectionCentres15(hub);
-        initializeCollectionCentres16(hub);
-        initializeCollectionCentres17(hub);
-        initializeCollectionCentres18(hub);
-        initializeCollectionCentres19(hub);
-        initializeCollectionCentres20(hub);
+        initializeAllCollectionCentres(hub);
 
     }
 
@@ -495,6 +476,29 @@ public class Main {
                 "5500 Ahahswinis Drive", "Hupacasath", "1-844-901-8442", HealthAuthority.ISLAND,
                 true, true, false, true, false);
         hub.addCollectionCentre(c98);
+    }
+
+    public static void initializeAllCollectionCentres(CollectionCentreHub hub) {
+        initializeCollectionCentres1(hub);
+        initializeCollectionCentres2(hub);
+        initializeCollectionCentres3(hub);
+        initializeCollectionCentres4(hub);
+        initializeCollectionCentres5(hub);
+        initializeCollectionCentres6(hub);
+        initializeCollectionCentres7(hub);
+        initializeCollectionCentres8(hub);
+        initializeCollectionCentres9(hub);
+        initializeCollectionCentres10(hub);
+        initializeCollectionCentres11(hub);
+        initializeCollectionCentres12(hub);
+        initializeCollectionCentres13(hub);
+        initializeCollectionCentres14(hub);
+        initializeCollectionCentres15(hub);
+        initializeCollectionCentres16(hub);
+        initializeCollectionCentres17(hub);
+        initializeCollectionCentres18(hub);
+        initializeCollectionCentres19(hub);
+        initializeCollectionCentres20(hub);
     }
 
 }

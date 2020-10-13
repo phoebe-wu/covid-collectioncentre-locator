@@ -28,5 +28,6 @@ class CollectionCentreTest {
         assertEquals("Oceanside Health Centre", c1.getName());
         assertEquals("4500 Oak Street", c3.getAddress());
         assertEquals("Saanichton", c2.getCity());
+        assertEquals(HealthAuthority.ISLAND, c2.getHealthAuthority());
     }
 }

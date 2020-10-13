@@ -47,28 +47,7 @@ public class CollectionCentre {
         return city;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
     public HealthAuthority getHealthAuthority() {
         return healthAuthority;
     }
-
-    public boolean getWeekend() {
-        return weekends;
-    }
-
-    public boolean getDriveThrough() {
-        return driveThrough;
-    }
-
-    public boolean getChildren() {
-        return children;
-    }
-
-    public boolean getReferral() {
-        return referral;
-    }
-
 }

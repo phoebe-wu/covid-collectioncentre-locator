@@ -21,4 +21,4 @@ I am interested in this project because I think an application like this is mand
 - As a user, I want to be able to view all centers in a city.
 - As a user, I want to be able to view all centers in a city that do drive-through testing.
 - As a user, I want to be able to view all centers in a health authority.
-- As a user, I want to be able to select a center and add it to a "favourites" list.
+- As a user, I want to be able to select a center and add it to a Favourites List.

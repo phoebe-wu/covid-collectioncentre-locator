@@ -13,6 +13,15 @@ public class FavouritesList {
         centres = new ArrayList<>();
     }
 
+    // getters
+    public String getName() {
+        return name;
+    }
+
+    public List<CollectionCentre> getCentres() {
+        return centres;
+    }
+
     // REQUIRES: c is not already within centres
     // MODIFIES: this
     // EFFECTS: adds collection centre to list

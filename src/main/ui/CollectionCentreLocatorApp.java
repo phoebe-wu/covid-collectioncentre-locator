@@ -68,7 +68,7 @@ public class CollectionCentreLocatorApp {
 
     // EFFECTS: displays menu of sorting options to user
     private void sortingMenu() {
-        System.out.println("\nWould you like to sort collection centres by:");
+        System.out.println("\nHow would you like to sort collection centres by:");
         System.out.println("\tcity -> City");
         System.out.println("\thealth -> Health Authority");
         System.out.println("\tfave -> View Favourites List");
@@ -83,7 +83,7 @@ public class CollectionCentreLocatorApp {
         } else if (command.equals("health")) {
             doHealthAuthorityFilter();
         } else if (command.equals("fave")) {
-            System.out.println(favList);;
+            System.out.println(cleanResults(favList.getCentres()));
         } else {
             System.out.println("Selection not valid...");
         }
@@ -107,22 +107,22 @@ public class CollectionCentreLocatorApp {
     private void doHealthAuthorityFilter() {
         System.out.println("Enter the health authority you want to search for collection centres in");
         String ha = input.next();
-        if (ha == "island") {
+        if (ha.equals("island")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.ISLAND);
             result = database.filterHealthAuthorityList(HealthAuthority.ISLAND);
-        } else if (ha == "coastal") {
+        } else if (ha.equals("coastal")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.COASTAL);
             result = database.filterHealthAuthorityList(HealthAuthority.COASTAL);
-        } else if (ha == "provincial") {
+        } else if (ha.equals("provincial")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.PROVINCIAL);
             result = database.filterHealthAuthorityList(HealthAuthority.PROVINCIAL);
-        } else if (ha == "northern") {
+        } else if (ha.equals("northern")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.NORTHERN);
             result = database.filterHealthAuthorityList(HealthAuthority.NORTHERN);
-        } else if (ha == "fraser") {
+        } else if (ha.equals("fraser")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.FRASER);
             result = database.filterHealthAuthorityList(HealthAuthority.FRASER);
-        } else if (ha == "interior") {
+        } else if (ha.equals("interior")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.INTERIOR);
             result = database.filterHealthAuthorityList(HealthAuthority.INTERIOR);
         } else {
@@ -260,7 +260,8 @@ public class CollectionCentreLocatorApp {
             }
             System.out.println("Added to your favourite's list!");
         } else if (command.equals("no")) {
-            System.out.println("Results were not added");;
+            System.out.println("Results were not added");
+            ;
         } else {
             System.out.println("Selection not valid");
         }
@@ -272,7 +273,7 @@ public class CollectionCentreLocatorApp {
         List<String> clean = new ArrayList<>();
 
         for (CollectionCentre c : results) {
-            clean.add(c.name + c.address + c.city + c.phone);
+            clean.add(c.name + "   " + c.address + ", " + c.city + "  " + c.phone);
         }
 
         return clean;

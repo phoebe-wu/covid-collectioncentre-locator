@@ -12,7 +12,7 @@ public class FavouritesListTest {
     CollectionCentre c3;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         favouritesList = new FavouritesList("Will Visit");
         c1 = new CollectionCentre("Oceanside Health Centre", "489 Alberni Hwy", "Parksville",
                 "1-8448901-8442", HealthAuthority.ISLAND,
@@ -28,13 +28,19 @@ public class FavouritesListTest {
     }
 
     @Test
-    void testAddCollectionCentre(){
+    void testGetters() {
+        assertEquals("Will Visit", favouritesList.getName());
+        assertEquals(1, favouritesList.getCentres().size());
+    }
+
+    @Test
+    void testAddCollectionCentre() {
         favouritesList.addCollectionCentre(c2);
         assertEquals(2, favouritesList.length());
     }
 
     @Test
-    void testAddCollectionCentreAlreadyExists(){
+    void testAddCollectionCentreAlreadyExists() {
         favouritesList.addCollectionCentre(c1);
         assertEquals(1, favouritesList.length());
     }

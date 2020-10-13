@@ -71,73 +71,85 @@ public class CollectionCentreHubTest {
     }
 
     @Test
-    void testFilterCity() {
-        List<CollectionCentre> van = testHub.filterCity("Vancouver");
+    void testFilterCityHub() {
+        CollectionCentreHub van = testHub.filterCityHub("Vancouver");
+        assertEquals(3, van.hubSize());
+    }
+
+    @Test
+    void testFilterCityList() {
+        List<CollectionCentre> van = testHub.filterCityList("Vancouver");
         assertEquals(3, van.size());
     }
 
     @Test
-    void testFilterHealthAuthority(){
-        List<CollectionCentre> island = testHub.filterHealthAuthority(HealthAuthority.ISLAND);
+    void testFilterHealthAuthorityHub(){
+        CollectionCentreHub island = testHub.filterHealthAuthorityHub(HealthAuthority.ISLAND);
+        assertEquals(2, island.hubSize());
+    }
+
+    @Test
+    void testFilterHealthAuthorityList(){
+        List<CollectionCentre> island = testHub.filterHealthAuthorityList(HealthAuthority.ISLAND);
         assertEquals(2, island.size());
     }
 
     @Test
-    void filterDriveThroughTrue() {
+    void testFilterDriveThroughTrue() {
         List<CollectionCentre> yesDriveThrough = testHub.filterDriveThrough(true);
         assertEquals(1, yesDriveThrough.size());
     }
 
     @Test
-    void filterDriveThroughFalse() {
+    void testFilterDriveThroughFalse() {
         List<CollectionCentre> noDriveThrough = testHub.filterDriveThrough(false);
         assertEquals(6, noDriveThrough.size());
     }
 
     @Test
-    void filterAppointmentTrue() {
+    void testFilterAppointmentTrue() {
         List<CollectionCentre> yesAppointment = testHub.filterAppointment(true);
         assertEquals(4, yesAppointment.size());
     }
 
     @Test
-    void filterAppointmentFalse() {
+    void testFilterAppointmentFalse() {
         List<CollectionCentre> noAppointment = testHub.filterAppointment(false);
         assertEquals(3, noAppointment.size());
     }
 
     @Test
-    void filterWeekendTrue() {
+    void testFilterWeekendTrue() {
         List<CollectionCentre> yesWeekend = testHub.filterWeekend(true);
         assertEquals(4, yesWeekend.size());
     }
 
     @Test
-    void filterWeekendFalse() {
+    void testFilterWeekendFalse() {
         List<CollectionCentre> noWeekend = testHub.filterWeekend(false);
         assertEquals(3, noWeekend.size());
     }
 
     @Test
-    void filterChildrenTrue() {
+    void testFilterChildrenTrue() {
         List<CollectionCentre> yesChildren = testHub.filterChildren(true);
         assertEquals(6, yesChildren.size());
     }
 
     @Test
-    void filterChildrenFalse() {
+    void testFilterChildrenFalse() {
         List<CollectionCentre> noChildren = testHub.filterChildren(false);
         assertEquals(1, noChildren.size());
     }
 
     @Test
-    void filterReferralTrue() {
+    void testFilterReferralTrue() {
         List<CollectionCentre> yesReferral = testHub.filterReferral(true);
         assertEquals(0, yesReferral.size());
     }
 
     @Test
-    void filterReferralFalse() {
+    void testFilterReferralFalse() {
         List<CollectionCentre> noReferral = testHub.filterReferral(false);
         assertEquals(7, noReferral.size());
     }

@@ -7,9 +7,7 @@ import model.HealthAuthority;
 
 public class Main {
     public static void main(String[] args) {
-        CollectionCentreHub hub = new CollectionCentreHub();
-        initializeAllCollectionCentres(hub);
-
+        new CollectionCentreLocatorApp();
     }
 
     public static void initializeCollectionCentres1(CollectionCentreHub hub) {

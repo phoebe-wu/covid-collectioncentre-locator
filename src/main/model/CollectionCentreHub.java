@@ -1,5 +1,7 @@
 package model;
 
+import sun.awt.image.ImageWatched;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,12 +26,25 @@ public class CollectionCentreHub {
     }
 
     // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers in that city
-    public List<CollectionCentre> filterCity(String city) {
-        List<CollectionCentre> result = new LinkedList<>();
+    // EFFECTS: returns a CollectionCentreHub of collection centers in that city for further filtering
+    public CollectionCentreHub filterCityHub(String city) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
         for (CollectionCentre c : collectionCentreHub) {
-            if (c.city == city) {
+            if (c.city.equals(city)) {
+                result.addCollectionCentre(c);
+            }
+        }
+        return result;
+    }
+
+    // REQUIRES: CollectionCentreHub is not empty
+    // EFFECTS: returns a list of collection centers in that city
+    public List<CollectionCentre> filterCityList(String city) {
+        List<CollectionCentre> result = new ArrayList<>();
+
+        for (CollectionCentre c : collectionCentreHub) {
+            if (c.city.equals(city)) {
                 result.add(c);
             }
         }
@@ -37,12 +52,25 @@ public class CollectionCentreHub {
     }
 
     // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers from that health authority
-    public List<CollectionCentre> filterHealthAuthority(HealthAuthority ha) {
-        List<CollectionCentre> result = new LinkedList<>();
+    // EFFECTS: returns a CollectionCentreHub of collection centers from that health authority for further filtering
+    public CollectionCentreHub filterHealthAuthorityHub(HealthAuthority ha) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
         for (CollectionCentre c : collectionCentreHub) {
-            if (c.healthAuthority == ha) {
+            if (c.healthAuthority.equals(ha)) {
+                result.addCollectionCentre(c);
+            }
+        }
+        return result;
+    }
+
+    // REQUIRES: CollectionCentreHub is not empty
+    // EFFECTS: returns a list of collection centers from that health authority
+    public List<CollectionCentre> filterHealthAuthorityList(HealthAuthority ha) {
+        List<CollectionCentre> result = new ArrayList<>();
+
+        for (CollectionCentre c : collectionCentreHub) {
+            if (c.healthAuthority.equals(ha)) {
                 result.add(c);
             }
         }
@@ -113,5 +141,6 @@ public class CollectionCentreHub {
         }
         return result;
     }
+
 
 }

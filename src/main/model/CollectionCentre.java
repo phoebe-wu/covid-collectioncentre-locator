@@ -4,10 +4,10 @@ import java.util.List;
 
 // Represents a Covid-19 Collection Center in BC
 public class CollectionCentre {
-    String name;
-    String address;
-    String city;
-    String phone; // null if there is no phone number
+    public String name;
+    public String address;
+    public String city;
+    public String phone; // null if there is no phone number
     HealthAuthority healthAuthority;
     boolean needAppointment;
     boolean weekends; // true if center is open on Saturday, Sunday, or both

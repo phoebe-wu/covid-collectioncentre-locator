@@ -43,11 +43,11 @@ public class CollectionCentreLocatorApp {
                 System.out.println(favList.sizeMessage());
                 System.out.println(cleanResults(favList.getCentres()));
             } else {
-                processSearchCommand(command);
+                processSortCommand(command);
             }
 
         }
-        System.out.println("Goodbye!");
+        System.out.println("Goodbye! Stay Safe! Wear a Mask!");
     }
 
     // MODIFIES: this
@@ -67,21 +67,21 @@ public class CollectionCentreLocatorApp {
         System.out.println("\tcity -> City");
         System.out.println("\thealth -> Health Authority");
         System.out.println("\nTo view your list of favourited collection centres:");
-        System.out.println("\tfave -> View Favourites List");
+        System.out.println("\tfavourites -> View Favourites List");
         System.out.println("\n Press 'q' to quit");
     }
 
     // MODIFIES: this
     // EFFECTS: processes user command to search
-    private void processSearchCommand(String command) {
+    private void processSortCommand(String command) {
         if (command.equals("city")) {
             doCityFilter();
-            furtherFilterResultsOption();
+            furtherFilterResultsMenu();
             command = input.next();
             processFilterCommand(command);
         } else if (command.equals("health")) {
             doHealthAuthorityFilter();
-            furtherFilterResultsOption();
+            furtherFilterResultsMenu();
             command = input.next();
             processFilterCommand(command);
         } else {
@@ -133,10 +133,10 @@ public class CollectionCentreLocatorApp {
 
     // EFFECTS: displays filter results menu to user to filter location results by appointment, referral, children,
     //          open on weekends, or drive-through
-    private void furtherFilterResultsOption() {
+    private void furtherFilterResultsMenu() {
         System.out.println("Would you like to further filter your results?");
-        System.out.println("\tyes-> To further filter results");
-        System.out.println("\tno -> View results");
+        System.out.println("\tyes -> To further filter results");
+        System.out.println("\tno -> To view your results");
     }
 
     // EFFECTS: processes user command if they want to further filter their results
@@ -148,16 +148,16 @@ public class CollectionCentreLocatorApp {
             command = input.next();
             processFavouritesCommand(command);
         } else if (command.equals("yes")) {
-            furtherFilterMenu();
+            furtherFilterCriteriaMenu();
             command = input.next();
-            processFurtherFilterCommand(command);
+            processFurtherFilterCriteriaCommand(command);
         } else {
             System.out.println("Selection not valid");
         }
     }
 
     // EFFECTS: displays menu of filtering options to user
-    private void furtherFilterMenu() {
+    private void furtherFilterCriteriaMenu() {
         System.out.println("How would you like to further filter your results?");
         System.out.println("\ta -> Appointment Requirement");
         System.out.println("\tr -> Referral Requirement");
@@ -167,27 +167,27 @@ public class CollectionCentreLocatorApp {
     }
 
     // EFFECTS: processes further filtering user command
-    private void processFurtherFilterCommand(String command) {
+    private void processFurtherFilterCriteriaCommand(String command) {
         if (command.equals("a")) {
-            furtherBooleanFilterMenu();
+            booleanFilterMenu();
             command = input.next();
-            processAppointmentCommand(command);
+            doAppointmentFilter(command);
         } else if (command.equals("r")) {
-            furtherBooleanFilterMenu();
+            booleanFilterMenu();
             command = input.next();
-            processReferralCommand(command);
+            doReferralFilter(command);
         } else if (command.equals("c")) {
-            furtherBooleanFilterMenu();
+            booleanFilterMenu();
             command = input.next();
-            processChildrenCommand(command);
+            doChildrenFilter(command);
         } else if (command.equals("d")) {
-            furtherBooleanFilterMenu();
+            booleanFilterMenu();
             command = input.next();
-            processDriveThroughCommand(command);
+            doDriveThroughFilter(command);
         } else if (command.equals("w")) {
-            furtherBooleanFilterMenu();
+            booleanFilterMenu();
             command = input.next();
-            processWeekendCommand(command);
+            doWeekendFilter(command);
         } else {
             System.out.println("Selection not valid");
         }
@@ -196,14 +196,14 @@ public class CollectionCentreLocatorApp {
     // EFFECTS: displays true or false boolean filtering menu to user
     //          e.g. true -> needs appointment
     //          e.g. false -> doesn't need referral
-    private void furtherBooleanFilterMenu() {
+    private void booleanFilterMenu() {
         System.out.println("true");
         System.out.println("false");
     }
 
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that require or don't require appointments
-    private void processAppointmentCommand(String command) {
+    private void doAppointmentFilter(String command) {
         result = secondaryDatabase.filterAppointment(Boolean.parseBoolean(command));
         criteriaMessage();
         System.out.println(cleanResults(result));
@@ -214,7 +214,7 @@ public class CollectionCentreLocatorApp {
 
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that require or don't require referral
-    private void processReferralCommand(String command) {
+    private void doReferralFilter(String command) {
         result = secondaryDatabase.filterReferral(Boolean.parseBoolean(command));
         criteriaMessage();
         System.out.println(cleanResults(result));
@@ -225,7 +225,7 @@ public class CollectionCentreLocatorApp {
 
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that are or are not open on weekends
-    private void processWeekendCommand(String command) {
+    private void doWeekendFilter(String command) {
         result = secondaryDatabase.filterWeekend(Boolean.parseBoolean(command));
         criteriaMessage();
         System.out.println(cleanResults(result));
@@ -236,7 +236,7 @@ public class CollectionCentreLocatorApp {
 
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that offer or don't offer drive-through testing
-    private void processDriveThroughCommand(String command) {
+    private void doDriveThroughFilter(String command) {
         result = secondaryDatabase.filterDriveThrough(Boolean.parseBoolean(command));
         criteriaMessage();
         System.out.println(cleanResults(result));
@@ -247,7 +247,7 @@ public class CollectionCentreLocatorApp {
 
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that do or do not take all children between 0 and 17 y/o
-    private void processChildrenCommand(String command) {
+    private void doChildrenFilter(String command) {
         result = secondaryDatabase.filterChildren(Boolean.parseBoolean(command));
         criteriaMessage();
         System.out.println(cleanResults(result));

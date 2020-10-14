@@ -474,6 +474,14 @@ public class Main {
                 "5500 Ahahswinis Drive", "Hupacasath", "1-844-901-8442", HealthAuthority.ISLAND,
                 true, true, false, true, false);
         hub.addCollectionCentre(c98);
+        CollectionCentre c99 = new CollectionCentre("Houston Health Centre", "3202 14th Avenue",
+                "Houston", "1-844-645-7811", HealthAuthority.NORTHERN, true, true,
+                false, true, true);
+        hub.addCollectionCentre(c99);
+        CollectionCentre c100 = new CollectionCentre("Terrace Health Unit", "3412 Kalum Street",
+                "Terrace", "1-844-645-7811", HealthAuthority.NORTHERN, true, false,
+                false, true, true);
+        hub.addCollectionCentre(c100);
     }
 
     public static void initializeAllCollectionCentres(CollectionCentreHub hub) {

@@ -46,12 +46,12 @@ public class FavouritesList {
     //          >1: "There are x collection centres in your list"
     public String sizeMessage() {
         if (centres.isEmpty()) {
-            return "There are no collection centres in your list";
+            return "There are no collection centres in your list.";
         } else {
             if (centres.size() == 1) {
-                return "There is 1 collection centre in your list";
+                return "There is 1 collection centre in your list.";
             } else {
-                return "There are " + centres.size() + " collection centres in your list";
+                return "There are " + centres.size() + " collection centres in your list.";
             }
         }
     }

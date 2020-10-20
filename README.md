@@ -25,3 +25,5 @@ I am interested in this project because I think an application like this is rele
 - As a user, I want to be able to view all centres in a city that do drive-through testing.
 - As a user, I want to be able to view all centres in a health authority.
 - As a user, I want to be able to add centres to a Favourites List.
+- As a user, I want to be able to save my Favourites List.
+- As a user, I want to be able to load my Favourites List from file.

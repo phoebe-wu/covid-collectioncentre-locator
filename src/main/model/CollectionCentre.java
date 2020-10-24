@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.List;
 
 // Represents a Covid-19 Collection Center in BC
-public class CollectionCentre {
+// Data persistence methods adapted from JsonSterilizationDemo
+public class CollectionCentre implements Writable {
     public String name;
     public String address;
     public String city;
@@ -49,5 +53,21 @@ public class CollectionCentre {
 
     public HealthAuthority getHealthAuthority() {
         return healthAuthority;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("address", address);
+        json.put("city", city);
+        json.put("phone", phone);
+        json.put("ha", healthAuthority);
+        json.put("a", needAppointment);
+        json.put("w", weekends);
+        json.put("dt", driveThrough);
+        json.put("c", children);
+        json.put("r", referral);
+        return json;
     }
 }

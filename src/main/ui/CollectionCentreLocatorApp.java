@@ -4,7 +4,11 @@ import model.CollectionCentre;
 import model.CollectionCentreHub;
 import model.FavouritesList;
 import model.HealthAuthority;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,17 +16,23 @@ import java.util.Scanner;
 import static ui.Main.initializeAllCollectionCentres;
 
 // Adapted from TellerApp and FitGymLife
-// Collection centre locator application
+// Data persistence methods adapted from JsonSterilizationDemo
+// Represents a Covid-19 collection centre locator application
 public class CollectionCentreLocatorApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
     private CollectionCentreHub database;
     private CollectionCentreHub secondaryDatabase;
     private List<CollectionCentre> result;
     private FavouritesList favList;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the locator application
-    public CollectionCentreLocatorApp() {
+    public CollectionCentreLocatorApp() throws FileNotFoundException {
         runLocatorApp();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -39,7 +49,7 @@ public class CollectionCentreLocatorApp {
 
             if (command.equals("q")) {
                 runProgram = false;
-            } else if (command.equals("fave")) {
+            } else if (command.equals("f")) {
                 System.out.println(favList.sizeMessage());
                 System.out.println(cleanResults(favList.getCentres()));
             } else {
@@ -64,26 +74,32 @@ public class CollectionCentreLocatorApp {
     // EFFECTS: displays menu of sorting options to user
     private void sortingMenu() {
         System.out.println("\nHow would you like to sort collection centres by?");
-        System.out.println("\tcity -> City");
-        System.out.println("\thealth -> Health Authority");
-        System.out.println("\nTo view your list of favourited collection centres:");
-        System.out.println("\tfavourites -> View Favourites List");
+        System.out.println("\tc -> City");
+        System.out.println("\th -> Health Authority");
+        System.out.println("\nFor your list of favourited collection centres:");
+        System.out.println("\tf -> View Favourites List");
+        System.out.println("\ts -> Save Favourites List to file");
+        System.out.println("\tl -> Load Favourites List from file");
         System.out.println("\n Press 'q' to quit");
     }
 
     // MODIFIES: this
     // EFFECTS: processes user command to search
     private void processSortCommand(String command) {
-        if (command.equals("city")) {
+        if (command.equals("c")) {
             doCityFilter();
             furtherFilterResultsMenu();
             command = input.next();
             processFilterCommand(command);
-        } else if (command.equals("health")) {
+        } else if (command.equals("h")) {
             doHealthAuthorityFilter();
             furtherFilterResultsMenu();
             command = input.next();
             processFilterCommand(command);
+        } else if (command.equals("s")) {
+            saveFavouritesList();
+        } else if (command.equals("l")) {
+            loadFavouritesList();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -280,7 +296,7 @@ public class CollectionCentreLocatorApp {
 
     // EFFECTS: returns a clean list of results including only a collection centre's name, address + city, and phone
     //          number if available
-    public List<String> cleanResults(List<CollectionCentre> results) {
+    private List<String> cleanResults(List<CollectionCentre> results) {
         List<String> clean = new ArrayList<>();
 
         for (CollectionCentre c : results) {
@@ -293,7 +309,7 @@ public class CollectionCentreLocatorApp {
     //          Empty: "No collection centres match your criteria."
     //              1: "1 collection centre matches your criteria."
     //             >1: "x collection centres match your criteria."
-    public void criteriaMessage() {
+    private void criteriaMessage() {
         if (result.isEmpty()) {
             System.out.println("No collection centres match your criteria.");
         } else {
@@ -302,6 +318,29 @@ public class CollectionCentreLocatorApp {
             } else {
                 System.out.println(result.size() + " collection centres match your criteria.");
             }
+        }
+    }
+
+    // EFFECTS: saves favourites list to file
+    private void saveFavouritesList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(favList);
+            jsonWriter.close();
+            System.out.println("Saved" + favList.getName() + "to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads favourites list from file
+    private void loadFavouritesList() {
+        try {
+            favList = jsonReader.read();
+            System.out.println("Loaded " + favList.getName() + "from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

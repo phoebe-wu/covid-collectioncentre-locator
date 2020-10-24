@@ -4,10 +4,16 @@ import model.CollectionCentre;
 import model.CollectionCentreHub;
 import model.HealthAuthority;
 
+import java.io.FileNotFoundException;
+
 
 public class Main {
     public static void main(String[] args) {
-        new CollectionCentreLocatorApp();
+        try {
+            new CollectionCentreLocatorApp();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to run application: file not found");
+        }
     }
 
     public static void initializeCollectionCentres1(CollectionCentreHub hub) {

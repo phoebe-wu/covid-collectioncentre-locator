@@ -1,9 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouritesList {
+// Represents a list of the users favourited collection centres that can be referenced later
+// Data persistence methods adapted from WorkRoom class in JsonSterilizationDemo
+public class FavouritesList implements Writable {
 
     public String name;
     private List<CollectionCentre> centres;
@@ -59,6 +65,23 @@ public class FavouritesList {
     // EFFECTS: returns the size of the favourites list
     public int length() {
         return centres.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("cc", collectionCentresToJson());
+        return json;
+    }
+
+    // EFFECTS: returns collection centres in this favourites list as a JSON array
+    private JSONArray collectionCentresToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (CollectionCentre c : centres) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 
 

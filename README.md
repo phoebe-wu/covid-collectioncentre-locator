@@ -21,9 +21,12 @@ I am interested in this project because I think an application like this is rele
  during a time like this.
 
 ## User Stories
+**Phase 1**
 - As a user, I want to be able to view all centres in a city.
 - As a user, I want to be able to view all centres in a city that do drive-through testing.
 - As a user, I want to be able to view all centres in a health authority.
 - As a user, I want to be able to add centres to a Favourites List.
+
+**Phase 2**
 - As a user, I want to be able to save my Favourites List.
 - As a user, I want to be able to load my Favourites List from file.

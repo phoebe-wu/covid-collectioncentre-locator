@@ -18,8 +18,8 @@ import static ui.Main.initializeAllCollectionCentres;
 // Adapted from TellerApp and FitGymLife
 // Data persistence methods adapted from JsonSterilizationDemo
 // Represents a Covid-19 collection centre locator application
-public class CollectionCentreLocatorApp {
-    private static final String JSON_STORE = "./data/workroom.json";
+public class LocatorApp {
+    private static final String JSON_STORE = "./data/FavouritesList.json";
     private Scanner input;
     private CollectionCentreHub database;
     private CollectionCentreHub secondaryDatabase;
@@ -29,10 +29,8 @@ public class CollectionCentreLocatorApp {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the locator application
-    public CollectionCentreLocatorApp() throws FileNotFoundException {
+    public LocatorApp() throws FileNotFoundException {
         runLocatorApp();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -42,6 +40,8 @@ public class CollectionCentreLocatorApp {
         String command = null;
 
         initializeApp();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         while (runProgram) {
             sortingMenu();

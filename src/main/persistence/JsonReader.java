@@ -42,7 +42,7 @@ public class JsonReader {
 
     // EFFECTS: parses favourites list from JSON object and returns it
     private FavouritesList parseFavouritesList(JSONObject jsonObject) {
-        FavouritesList myList = new FavouritesList("Your Favourites List");
+        FavouritesList myList = new FavouritesList("Favourites List");
         addCollectionCentres(myList, jsonObject);
         return myList;
     }
@@ -50,7 +50,7 @@ public class JsonReader {
     // MODIFIES: this
     // EFFECTS: parses collection centres from JSON object and adds them to favourites list
     private void addCollectionCentres(FavouritesList myList, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("cc");
+        JSONArray jsonArray = jsonObject.getJSONArray("centres");
         for (Object json : jsonArray) {
             JSONObject nextCC = (JSONObject) json;
             addCollectionCentre(myList, nextCC);

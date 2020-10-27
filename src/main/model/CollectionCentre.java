@@ -11,7 +11,7 @@ public class CollectionCentre implements Writable {
     public String name;
     public String address;
     public String city;
-    public String phone; // null if there is no phone number
+    public String phone; // unavailable if there is no phone number
     HealthAuthority healthAuthority;
     boolean needAppointment;
     boolean weekends; // true if center is open on Saturday, Sunday, or both
@@ -51,9 +51,34 @@ public class CollectionCentre implements Writable {
         return city;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public HealthAuthority getHealthAuthority() {
         return healthAuthority;
     }
+
+    public boolean isNeedAppointment() {
+        return needAppointment;
+    }
+
+    public boolean isWeekends() {
+        return weekends;
+    }
+
+    public boolean isDriveThrough() {
+        return driveThrough;
+    }
+
+    public boolean isChildren() {
+        return children;
+    }
+
+    public boolean isReferral() {
+        return referral;
+    }
+
 
     @Override
     public JSONObject toJson() {

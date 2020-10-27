@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-//Represents a database of Collection Centres
+//Represents a database of all Collection Centres in British Columbia
 public class CollectionCentreHub {
     List<CollectionCentre> collectionCentreHub;
 

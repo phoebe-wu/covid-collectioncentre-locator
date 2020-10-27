@@ -1,0 +1,29 @@
+{
+  "centres": [
+    {
+      "name": "South Delta",
+      "address": "4470 Clarence Taylor Crescent",
+      "city": "Delta",
+      "phone": "604-952-3851",
+      "ha": "FRASER",
+      "a": false,
+      "w": true,
+      "dt": false,
+      "c": true,
+      "r": false
+    },
+    {
+      "name": "Tri-Cities COVID-19 Test Collection Centre",
+      "address": "2796 Aberdeen Avenue",
+      "city": "Coquitlam",
+      "phone": "unavailable",
+      "ha": "FRASER",
+      "a": false,
+      "w": true,
+      "dt": false,
+      "c": false,
+      "r": false
+    }
+  ],
+  "name": "Favourites List"
+}

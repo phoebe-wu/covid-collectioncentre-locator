@@ -5,15 +5,16 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // Represents a list of the users favourited collection centres that can be referenced later
 // Data persistence methods adapted from WorkRoom class in JsonSterilizationDemo
 public class FavouritesList implements Writable {
-
     public String name;
     private List<CollectionCentre> centres;
 
+    // EFFECTS: constructs a Favourites List with given name and an empty list of collection centres
     public FavouritesList(String name) {
         this.name = name;
         centres = new ArrayList<>();
@@ -24,8 +25,9 @@ public class FavouritesList implements Writable {
         return name;
     }
 
+    // EFFECTS: returns an unmodifiable list of centres in this favourites list
     public List<CollectionCentre> getCentres() {
-        return centres;
+        return Collections.unmodifiableList(centres);
     }
 
     // REQUIRES: c is not already within centres
@@ -70,7 +72,7 @@ public class FavouritesList implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("cc", collectionCentresToJson());
+        json.put("centres", collectionCentresToJson());
         return json;
     }
 

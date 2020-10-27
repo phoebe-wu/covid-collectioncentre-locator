@@ -1,0 +1,26 @@
+{"centres": [
+    {
+        "dt": true,
+        "a": false,
+        "r": false,
+        "address": "4875 Heather Street",
+        "c": false,
+        "city": "Vancouver",
+        "phone": "unavailable",
+        "w": true,
+        "name": "St. Vincent",
+        "ha": "COASTAL"
+    },
+    {
+        "dt": true,
+        "a": false,
+        "r": false,
+        "address": "North Parking Lot #865 - Entrance between Keith and Glen Drive",
+        "c": false,
+        "city": "Vancouver",
+        "phone": "unavailable",
+        "w": true,
+        "name": "Vancouver Community College - Parking Lot",
+        "ha": "COASTAL"
+    }
+]}

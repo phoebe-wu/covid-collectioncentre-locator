@@ -31,7 +31,8 @@ public class CollectionCentreHub {
         CollectionCentreHub result = new CollectionCentreHub();
 
         for (CollectionCentre c : collectionCentreHub) {
-            if (c.city.equals(city)) {
+            if (c.city.replaceAll("\\s+", "").equalsIgnoreCase(city.replaceAll(
+                    "\\s+", ""))) {
                 result.addCollectionCentre(c);
             }
         }
@@ -44,7 +45,8 @@ public class CollectionCentreHub {
         List<CollectionCentre> result = new ArrayList<>();
 
         for (CollectionCentre c : collectionCentreHub) {
-            if (c.city.equals(city)) {
+            if (c.city.replaceAll("\\s+", "").equalsIgnoreCase(city.replaceAll(
+                    "\\s+", ""))) {
                 result.add(c);
             }
         }

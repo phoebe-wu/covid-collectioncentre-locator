@@ -21,7 +21,7 @@ public class CollectionCentreHubTest {
     CollectionCentre c8;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         testHub = new CollectionCentreHub();
 
         c1 = new CollectionCentre("Oceanside Health Centre", "489 Alberni Hwy", "Parksville",
@@ -83,13 +83,31 @@ public class CollectionCentreHubTest {
     }
 
     @Test
-    void testFilterHealthAuthorityHub(){
+    void testFilterCityHubTwoWordName() {
+        CollectionCentreHub mr = testHub.filterCityHub("Maple Ridge");
+        assertEquals(1, mr.hubSize());
+    }
+
+    @Test
+    void testFilterCityListTwoWordName() {
+        List<CollectionCentre> mr = testHub.filterCityList("Maple Ridge");
+        assertEquals(1, mr.size());
+    }
+
+    @Test
+    void testFilterCityListTwoWordNoSpace() {
+        List<CollectionCentre> mr = testHub.filterCityList("MapleRidge");
+        assertEquals(1, mr.size());
+    }
+
+    @Test
+    void testFilterHealthAuthorityHub() {
         CollectionCentreHub island = testHub.filterHealthAuthorityHub(HealthAuthority.ISLAND);
         assertEquals(2, island.hubSize());
     }
 
     @Test
-    void testFilterHealthAuthorityList(){
+    void testFilterHealthAuthorityList() {
         List<CollectionCentre> island = testHub.filterHealthAuthorityList(HealthAuthority.ISLAND);
         assertEquals(2, island.size());
     }

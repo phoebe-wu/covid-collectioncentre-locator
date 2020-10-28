@@ -49,7 +49,7 @@ public class LocatorApp {
 
             if (command.equals("q")) {
                 runProgram = false;
-            } else if (command.equals("f")) {
+            } else if (command.equals("v")) {
                 System.out.println(favList.sizeMessage());
                 System.out.println(cleanResults(favList.getCentres()));
             } else {
@@ -77,7 +77,7 @@ public class LocatorApp {
         System.out.println("\tc -> City");
         System.out.println("\th -> Health Authority");
         System.out.println("\nFor your list of favourited collection centres:");
-        System.out.println("\tf -> View Favourites List");
+        System.out.println("\tv -> View Favourites List");
         System.out.println("\ts -> Save Favourites List to file");
         System.out.println("\tl -> Load Favourites List from file");
         System.out.println("\n Press 'q' to quit");
@@ -112,8 +112,8 @@ public class LocatorApp {
     private void doCityFilter() {
         System.out.println("Enter city you want to search for collection centres in");
         String city = input.next();
-        secondaryDatabase = database.filterCityHub(city);
-        result = database.filterCityList(city);
+        secondaryDatabase = database.filterCityHub(city.replaceAll("\\s+", ""));
+        result = database.filterCityList(city.replaceAll("\\s+", ""));
     }
 
     // MODIFIES: secondaryDatabase, result
@@ -123,22 +123,22 @@ public class LocatorApp {
     private void doHealthAuthorityFilter() {
         System.out.println("Enter the health authority you want to search for collection centres in");
         String ha = input.next();
-        if (ha.equals("island")) {
+        if (ha.equalsIgnoreCase("island")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.ISLAND);
             result = database.filterHealthAuthorityList(HealthAuthority.ISLAND);
-        } else if (ha.equals("coastal")) {
+        } else if (ha.equalsIgnoreCase("coastal")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.COASTAL);
             result = database.filterHealthAuthorityList(HealthAuthority.COASTAL);
-        } else if (ha.equals("provincial")) {
+        } else if (ha.equalsIgnoreCase("provincial")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.PROVINCIAL);
             result = database.filterHealthAuthorityList(HealthAuthority.PROVINCIAL);
-        } else if (ha.equals("northern")) {
+        } else if (ha.equalsIgnoreCase("northern")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.NORTHERN);
             result = database.filterHealthAuthorityList(HealthAuthority.NORTHERN);
-        } else if (ha.equals("fraser")) {
+        } else if (ha.equalsIgnoreCase("fraser")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.FRASER);
             result = database.filterHealthAuthorityList(HealthAuthority.FRASER);
-        } else if (ha.equals("interior")) {
+        } else if (ha.equalsIgnoreCase("interior")) {
             secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.INTERIOR);
             result = database.filterHealthAuthorityList(HealthAuthority.INTERIOR);
         } else {
@@ -300,7 +300,7 @@ public class LocatorApp {
         List<String> clean = new ArrayList<>();
 
         for (CollectionCentre c : results) {
-            clean.add(c.name + "   " + c.address + ", " + c.city + "  Phone:" + c.phone);
+            clean.add(c.name + "   " + c.address + ", " + c.city + "  Phone: " + c.phone);
         }
         return clean;
     }
@@ -327,7 +327,7 @@ public class LocatorApp {
             jsonWriter.open();
             jsonWriter.write(favList);
             jsonWriter.close();
-            System.out.println("Saved" + favList.getName() + "to " + JSON_STORE);
+            System.out.println("Saved " + favList.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -338,7 +338,7 @@ public class LocatorApp {
     private void loadFavouritesList() {
         try {
             favList = jsonReader.read();
-            System.out.println("Loaded " + favList.getName() + "from " + JSON_STORE);
+            System.out.println("Loaded " + favList.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

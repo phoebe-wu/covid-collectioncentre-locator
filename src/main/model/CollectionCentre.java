@@ -3,8 +3,6 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.List;
-
 // Represents a Covid-19 Collection Center in BC
 // Data persistence methods adapted from JsonSterilizationDemo
 public class CollectionCentre implements Writable {

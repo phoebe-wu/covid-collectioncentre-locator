@@ -43,7 +43,7 @@ public class LocatorApp {
         jsonReader = new JsonReader(JSON_STORE);
 
         while (runProgram) {
-            sortingMenu();
+            initialLocationSortingMenu();
             command = input.next();
 
             if (command.equals("q")) {
@@ -52,7 +52,7 @@ public class LocatorApp {
                 System.out.println(favList.sizeMessage());
                 System.out.println(cleanResults(favList.getCentres()));
             } else {
-                processSortCommand(command);
+                processLocationSortCommand(command);
             }
 
         }
@@ -71,7 +71,7 @@ public class LocatorApp {
 
 
     // EFFECTS: displays menu of sorting options to user
-    private void sortingMenu() {
+    private void initialLocationSortingMenu() {
         System.out.println("\nHow would you like to sort collection centres by?");
         System.out.println("\tc -> City");
         System.out.println("\th -> Health Authority");
@@ -84,40 +84,36 @@ public class LocatorApp {
 
     // MODIFIES: this
     // EFFECTS: processes user command to search
-    private void processSortCommand(String command) {
-        if (command.equals("c")) {
+    private void processLocationSortCommand(String command) {
+        if (command.equalsIgnoreCase("c")) {
             doCityFilter();
-            furtherFilterResultsMenu();
+            optionToFurtherFilterMenu();
             command = input.next();
-            processFilterCommand(command);
-        } else if (command.equals("h")) {
+            processOptionToFilterCommand(command);
+        } else if (command.equalsIgnoreCase("h")) {
             doHealthAuthorityFilter();
-            furtherFilterResultsMenu();
+            optionToFurtherFilterMenu();
             command = input.next();
-            processFilterCommand(command);
-        } else if (command.equals("s")) {
+            processOptionToFilterCommand(command);
+        } else if (command.equalsIgnoreCase("s")) {
             saveFavouritesList();
-        } else if (command.equals("l")) {
+        } else if (command.equalsIgnoreCase("l")) {
             loadFavouritesList();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
-    // MODIFIES: secondaryDatabase, result
-    // EFFECTS: generates collection centres to the ones located only in the entered city and stores in
-    //          secondaryDatabase for if user wants to filter again after OR
-    //          result for if user wants to view results right after
+    // MODIFIES: filtered
+    // EFFECTS: generates collection centres to the ones located only in the entered city
     private void doCityFilter() {
         System.out.println("Enter city you want to search for collection centres in");
         String city = input.next();
-        filtered = database.filterCity(city.replaceAll("\\s+", ""));
+        filtered = database.filterCity(city);
     }
 
-    // MODIFIES: secondaryDatabase, result
+    // MODIFIES: filtered
     // EFFECTS: generates collection centres to the ones located only in the entered health authority and stores in
-    //          secondaryDatabase for if user wants to filter again after OR
-    //          result for if user wants to view results right after
     private void doHealthAuthorityFilter() {
         System.out.println("Enter the health authority you want to search for collection centres in");
         String ha = input.next();
@@ -141,31 +137,31 @@ public class LocatorApp {
 
     // EFFECTS: displays filter results menu to user to filter location results by appointment, referral, children,
     //          open on weekends, or drive-through
-    private void furtherFilterResultsMenu() {
+    private void optionToFurtherFilterMenu() {
         System.out.println("Would you like to further filter your results?");
         System.out.println("\tyes -> To further filter results");
         System.out.println("\tno -> To view your results");
     }
 
     // EFFECTS: processes user command if they want to further filter their results
-    private void processFilterCommand(String command) {
-        if (command.equals("no")) {
+    private void processOptionToFilterCommand(String command) {
+        if (command.equalsIgnoreCase("no")) {
             criteriaMessage();
             System.out.println(cleanResults(filtered.getCentres()));
             addToFavouritesMenu();
             command = input.next();
             processFavouritesCommand(command);
-        } else if (command.equals("yes")) {
-            furtherFilterCriteriaMenu();
+        } else if (command.equalsIgnoreCase("yes")) {
+            filterByCriteriaMenu();
             command = input.next();
-            processFurtherFilterCriteriaCommand(command);
+            processFilterByCriteriaCommand(command);
         } else {
             System.out.println("Selection not valid");
         }
     }
 
     // EFFECTS: displays menu of filtering options to user
-    private void furtherFilterCriteriaMenu() {
+    private void filterByCriteriaMenu() {
         System.out.println("How would you like to further filter your results?");
         System.out.println("\ta -> Appointment Requirement");
         System.out.println("\tr -> Referral Requirement");
@@ -175,24 +171,24 @@ public class LocatorApp {
     }
 
     // EFFECTS: processes further filtering user command
-    private void processFurtherFilterCriteriaCommand(String command) {
-        if (command.equals("a")) {
+    private void processFilterByCriteriaCommand(String command) {
+        if (command.equalsIgnoreCase("a")) {
             booleanFilterMenu();
             command = input.next();
             doAppointmentFilter(command);
-        } else if (command.equals("r")) {
+        } else if (command.equalsIgnoreCase("r")) {
             booleanFilterMenu();
             command = input.next();
             doReferralFilter(command);
-        } else if (command.equals("c")) {
+        } else if (command.equalsIgnoreCase("c")) {
             booleanFilterMenu();
             command = input.next();
             doChildrenFilter(command);
-        } else if (command.equals("d")) {
+        } else if (command.equalsIgnoreCase("d")) {
             booleanFilterMenu();
             command = input.next();
             doDriveThroughFilter(command);
-        } else if (command.equals("w")) {
+        } else if (command.equalsIgnoreCase("w")) {
             booleanFilterMenu();
             command = input.next();
             doWeekendFilter(command);
@@ -268,26 +264,25 @@ public class LocatorApp {
     // EFFECTS: asks user if they would like add the list of filtered collection centres to their favourite list
     private void addToFavouritesMenu() {
         System.out.println("Would you like to:");
+        System.out.println("\t f -> filter your results again");
         System.out.println("Add the results to your favourites list?");
-        System.out.println("\tyes");
-        System.out.println("\tno");
-        System.out.println("Filter your results further?");
-        System.out.println("\t f");
+        System.out.println("\tyes -> add your results to your favourites");
+        System.out.println("\tno -> restart your search");
     }
 
     // EFFECTS: processes favourites user command
     private void processFavouritesCommand(String command) {
-        if (command.equals("yes")) {
+        if (command.equalsIgnoreCase("yes")) {
             for (CollectionCentre c : filtered.getCentres()) {
                 favList.addCollectionCentre(c);
             }
-            System.out.println("Successfully added to your favourites list!");
-        } else if (command.equals("no")) {
+            System.out.println("Successfully added centres to your favourites list!");
+        } else if (command.equalsIgnoreCase("no")) {
             System.out.println("Results were not added");
         } else if (command.equalsIgnoreCase("f")) {
-            furtherFilterCriteriaMenu();
+            filterByCriteriaMenu();
             command = input.next();
-            processFurtherFilterCriteriaCommand(command);
+            processFilterByCriteriaCommand(command);
         } else {
             System.out.println("Selection not valid");
         }

@@ -12,7 +12,7 @@ import java.util.List;
 // Data persistence methods adapted from WorkRoom class in JsonSterilizationDemo
 public class FavouritesList implements Writable {
     public String name;
-    private List<CollectionCentre> centres;
+    private final List<CollectionCentre> centres;
 
     // EFFECTS: constructs a Favourites List with given name and an empty list of collection centres
     public FavouritesList(String name) {
@@ -43,9 +43,7 @@ public class FavouritesList implements Writable {
     // MODIFIES: this
     // EFFECTS: removes collection center from list
     public void removeCollectionCenter(CollectionCentre c) {
-        if (centres.contains(c)) {
-            centres.remove(c);
-        }
+        centres.remove(c);
     }
 
     // EFFECTS: produces a message indicating size of list
@@ -54,12 +52,12 @@ public class FavouritesList implements Writable {
     //          >1: "There are x collection centres in your list"
     public String sizeMessage() {
         if (centres.isEmpty()) {
-            return "There are no collection centres in your list.";
+            return "There are no collection centres in your favourites list.";
         } else {
             if (centres.size() == 1) {
-                return "There is 1 collection centre in your list.";
+                return "There is 1 collection centre in your favourites list.";
             } else {
-                return "There are " + centres.size() + " collection centres in your list.";
+                return "There are " + centres.size() + " collection centres in your favourites list.";
             }
         }
     }

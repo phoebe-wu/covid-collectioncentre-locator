@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,8 +28,8 @@ public class CollectionCentreDatabase {
         return centres.size();
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a CollectionCentreHub of collection centers in that city
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers in that city
     public CollectionCentreDatabase filterCity(String city) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -43,8 +42,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a CollectionCentreHub of collection centers from that health authority
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers from that health authority
     public CollectionCentreDatabase filterHealthAuthority(HealthAuthority ha) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -56,8 +55,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers that do drive through testing
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers that do drive through testing
     public CollectionCentreDatabase filterDriveThrough(Boolean b) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -69,8 +68,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers that require appointments
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers that require appointments
     public CollectionCentreDatabase filterAppointment(Boolean b) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -82,8 +81,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers that are open on weekends
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers that are open on weekends
     public CollectionCentreDatabase filterWeekend(Boolean b) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -95,8 +94,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers that take all children aged 0-16
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers that take all children aged 0-16
     public CollectionCentreDatabase filterChildren(Boolean b) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 
@@ -108,8 +107,8 @@ public class CollectionCentreDatabase {
         return result;
     }
 
-    // REQUIRES: CollectionCentreHub is not empty
-    // EFFECTS: returns a list of collection centers that need referral
+    // REQUIRES: CollectionCentreDatabase is not empty
+    // EFFECTS: returns a CollectionCentreDatabase of collection centers that need referral
     public CollectionCentreDatabase filterReferral(Boolean b) {
         CollectionCentreDatabase result = new CollectionCentreDatabase();
 

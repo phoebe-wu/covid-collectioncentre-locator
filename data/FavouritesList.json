@@ -1,26 +1,26 @@
 {"centres": [
     {
-        "dt": true,
+        "dt": false,
         "a": false,
         "r": false,
-        "address": "4875 Heather Street",
+        "address": "15521 Russell Avenue",
         "c": false,
-        "city": "Vancouver",
-        "phone": "unavailable",
+        "city": "White Rock",
+        "phone": "604-542-4057",
         "w": true,
-        "name": "St. Vincent",
-        "ha": "COASTAL"
+        "name": "Peace Arch Hospital",
+        "ha": "FRASER"
     },
     {
-        "dt": true,
+        "dt": false,
         "a": false,
         "r": false,
-        "address": "North Parking Lot #865 - Entrance between Keith and Glen Drive",
+        "address": "9090 Newman Road",
         "c": false,
-        "city": "Vancouver",
-        "phone": "unavailable",
+        "city": "Chilliwack",
+        "phone": "604-702-4928",
         "w": true,
-        "name": "Vancouver Community College - Parking Lot",
-        "ha": "COASTAL"
+        "name": "Chilliwack COVID-19 Testing & Assessment Centre",
+        "ha": "FRASER"
     }
 ]}

@@ -71,8 +71,7 @@ public class CollectionCentreDatabaseTest {
 
     @Test
     void testCentreDatabaseGetter() {
-        database.getCentres();
-        assertEquals(9, database.centres.size());
+        assertEquals(9, database.getCentres().size());
     }
 
     @Test

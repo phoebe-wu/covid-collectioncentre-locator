@@ -1,28 +1,31 @@
 package model;
 
-import sun.awt.image.ImageWatched;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 //Represents a database of all Collection Centres in British Columbia
 public class CollectionCentreHub {
-    List<CollectionCentre> collectionCentreHub;
+    List<CollectionCentre> centres;
 
     // EFFECTS: constructs an empty list of CollectionCentres
     public CollectionCentreHub() {
-        collectionCentreHub = new LinkedList<>();
+        centres = new LinkedList<>();
+    }
+
+    // getter
+    public List<CollectionCentre> getCentres() {
+        return centres;
     }
 
     // EFFECTS: adds a CollectionCentre to CollectionCentreHub
     public void addCollectionCentre(CollectionCentre c) {
-        collectionCentreHub.add(c);
+        centres.add(c);
     }
 
     // EFFECTS: returns the size of CollectionCentreHub
     public int hubSize() {
-        return collectionCentreHub.size();
+        return centres.size();
     }
 
     // REQUIRES: CollectionCentreHub is not empty
@@ -30,7 +33,7 @@ public class CollectionCentreHub {
     public CollectionCentreHub filterCityHub(String city) {
         CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.city.replaceAll("\\s+", "").equalsIgnoreCase(city.replaceAll(
                     "\\s+", ""))) {
                 result.addCollectionCentre(c);
@@ -44,7 +47,7 @@ public class CollectionCentreHub {
     public List<CollectionCentre> filterCityList(String city) {
         List<CollectionCentre> result = new ArrayList<>();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.city.replaceAll("\\s+", "").equalsIgnoreCase(city.replaceAll(
                     "\\s+", ""))) {
                 result.add(c);
@@ -58,7 +61,7 @@ public class CollectionCentreHub {
     public CollectionCentreHub filterHealthAuthorityHub(HealthAuthority ha) {
         CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.healthAuthority.equals(ha)) {
                 result.addCollectionCentre(c);
             }
@@ -71,7 +74,7 @@ public class CollectionCentreHub {
     public List<CollectionCentre> filterHealthAuthorityList(HealthAuthority ha) {
         List<CollectionCentre> result = new ArrayList<>();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.healthAuthority.equals(ha)) {
                 result.add(c);
             }
@@ -81,12 +84,12 @@ public class CollectionCentreHub {
 
     // REQUIRES: CollectionCentreHub is not empty
     // EFFECTS: returns a list of collection centers that do drive through testing
-    public List<CollectionCentre> filterDriveThrough(Boolean b) {
-        List<CollectionCentre> result = new LinkedList<>();
+    public CollectionCentreHub filterDriveThrough(Boolean b) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.driveThrough == b) {
-                result.add(c);
+                result.addCollectionCentre(c);
             }
         }
         return result;
@@ -94,12 +97,12 @@ public class CollectionCentreHub {
 
     // REQUIRES: CollectionCentreHub is not empty
     // EFFECTS: returns a list of collection centers that require appointments
-    public List<CollectionCentre> filterAppointment(Boolean b) {
-        List<CollectionCentre> result = new LinkedList<>();
+    public CollectionCentreHub filterAppointment(Boolean b) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.needAppointment == b) {
-                result.add(c);
+                result.addCollectionCentre(c);
             }
         }
         return result;
@@ -107,12 +110,12 @@ public class CollectionCentreHub {
 
     // REQUIRES: CollectionCentreHub is not empty
     // EFFECTS: returns a list of collection centers that are open on weekends
-    public List<CollectionCentre> filterWeekend(Boolean b) {
-        List<CollectionCentre> result = new LinkedList<>();
+    public CollectionCentreHub filterWeekend(Boolean b) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.weekends == b) {
-                result.add(c);
+                result.addCollectionCentre(c);
             }
         }
         return result;
@@ -120,12 +123,12 @@ public class CollectionCentreHub {
 
     // REQUIRES: CollectionCentreHub is not empty
     // EFFECTS: returns a list of collection centers that take all children aged 0-16
-    public List<CollectionCentre> filterChildren(Boolean b) {
-        List<CollectionCentre> result = new LinkedList<>();
+    public CollectionCentreHub filterChildren(Boolean b) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.children == b) {
-                result.add(c);
+                result.addCollectionCentre(c);
             }
         }
         return result;
@@ -133,12 +136,12 @@ public class CollectionCentreHub {
 
     // REQUIRES: CollectionCentreHub is not empty
     // EFFECTS: returns a list of collection centers that need referral
-    public List<CollectionCentre> filterReferral(Boolean b) {
-        List<CollectionCentre> result = new LinkedList<>();
+    public CollectionCentreHub filterReferral(Boolean b) {
+        CollectionCentreHub result = new CollectionCentreHub();
 
-        for (CollectionCentre c : collectionCentreHub) {
+        for (CollectionCentre c : centres) {
             if (c.referral == b) {
-                result.add(c);
+                result.addCollectionCentre(c);
             }
         }
         return result;

@@ -22,8 +22,7 @@ public class LocatorApp {
     private static final String JSON_STORE = "./data/FavouritesList.json";
     private Scanner input;
     private CollectionCentreHub database;
-    private CollectionCentreHub secondaryDatabase;
-    private List<CollectionCentre> result;
+    private CollectionCentreHub filtered;
     private FavouritesList favList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -51,7 +50,7 @@ public class LocatorApp {
                 runProgram = false;
             } else if (command.equals("v")) {
                 System.out.println(favList.sizeMessage());
-                System.out.println(cleanResults(favList.getCentres()));
+                System.out.println(cleanResultsList(favList.getCentres()));
             } else {
                 processSortCommand(command);
             }
@@ -66,7 +65,7 @@ public class LocatorApp {
         database = new CollectionCentreHub();
         initializeAllCollectionCentres(database);
         input = new Scanner(System.in);
-        result = new ArrayList<>();
+        filtered = new CollectionCentreHub();
         favList = new FavouritesList("Favourites List");
     }
 
@@ -112,8 +111,7 @@ public class LocatorApp {
     private void doCityFilter() {
         System.out.println("Enter city you want to search for collection centres in");
         String city = input.next();
-        secondaryDatabase = database.filterCityHub(city.replaceAll("\\s+", ""));
-        result = database.filterCityList(city.replaceAll("\\s+", ""));
+        filtered = database.filterCityHub(city.replaceAll("\\s+", ""));
     }
 
     // MODIFIES: secondaryDatabase, result
@@ -124,23 +122,17 @@ public class LocatorApp {
         System.out.println("Enter the health authority you want to search for collection centres in");
         String ha = input.next();
         if (ha.equalsIgnoreCase("island")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.ISLAND);
-            result = database.filterHealthAuthorityList(HealthAuthority.ISLAND);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.ISLAND);
         } else if (ha.equalsIgnoreCase("coastal")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.COASTAL);
-            result = database.filterHealthAuthorityList(HealthAuthority.COASTAL);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.COASTAL);
         } else if (ha.equalsIgnoreCase("provincial")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.PROVINCIAL);
-            result = database.filterHealthAuthorityList(HealthAuthority.PROVINCIAL);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.PROVINCIAL);
         } else if (ha.equalsIgnoreCase("northern")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.NORTHERN);
-            result = database.filterHealthAuthorityList(HealthAuthority.NORTHERN);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.NORTHERN);
         } else if (ha.equalsIgnoreCase("fraser")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.FRASER);
-            result = database.filterHealthAuthorityList(HealthAuthority.FRASER);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.FRASER);
         } else if (ha.equalsIgnoreCase("interior")) {
-            secondaryDatabase = database.filterHealthAuthorityHub(HealthAuthority.INTERIOR);
-            result = database.filterHealthAuthorityList(HealthAuthority.INTERIOR);
+            filtered = database.filterHealthAuthorityHub(HealthAuthority.INTERIOR);
         } else {
             System.out.println("Please enter 'island', 'coastal', 'provincial', 'northern', 'fraser', or 'interior'");
         }
@@ -159,7 +151,7 @@ public class LocatorApp {
     private void processFilterCommand(String command) {
         if (command.equals("no")) {
             criteriaMessage();
-            System.out.println(cleanResults(result));
+            System.out.println(cleanResults(filtered));
             addToFavouritesMenu();
             command = input.next();
             processFavouritesCommand(command);
@@ -220,9 +212,9 @@ public class LocatorApp {
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that require or don't require appointments
     private void doAppointmentFilter(String command) {
-        result = secondaryDatabase.filterAppointment(Boolean.parseBoolean(command));
+        filtered = filtered.filterAppointment(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(result));
+        System.out.println(cleanResults(filtered));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -231,9 +223,9 @@ public class LocatorApp {
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that require or don't require referral
     private void doReferralFilter(String command) {
-        result = secondaryDatabase.filterReferral(Boolean.parseBoolean(command));
+        filtered = filtered.filterReferral(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(result));
+        System.out.println(cleanResults(filtered));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -242,9 +234,9 @@ public class LocatorApp {
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that are or are not open on weekends
     private void doWeekendFilter(String command) {
-        result = secondaryDatabase.filterWeekend(Boolean.parseBoolean(command));
+        filtered = filtered.filterWeekend(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(result));
+        System.out.println(cleanResults(filtered));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -253,9 +245,9 @@ public class LocatorApp {
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that offer or don't offer drive-through testing
     private void doDriveThroughFilter(String command) {
-        result = secondaryDatabase.filterDriveThrough(Boolean.parseBoolean(command));
+        filtered = filtered.filterDriveThrough(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(result));
+        System.out.println(cleanResults(filtered));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -264,9 +256,9 @@ public class LocatorApp {
     // MODIFIES: result
     // EFFECTS: filters results from last sorting to centres that do or do not take all children between 0 and 17 y/o
     private void doChildrenFilter(String command) {
-        result = secondaryDatabase.filterChildren(Boolean.parseBoolean(command));
+        filtered = filtered.filterChildren(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(result));
+        System.out.println(cleanResults(filtered));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -275,28 +267,47 @@ public class LocatorApp {
 
     // EFFECTS: asks user if they would like add the list of filtered collection centres to their favourite list
     private void addToFavouritesMenu() {
-        System.out.println("Would you like to add the results to your favourites list?");
+        System.out.println("Would you like to:");
+        System.out.println("Add the results to your favourites list?");
         System.out.println("\tyes");
         System.out.println("\tno");
+        System.out.println("Filter your results further?");
+        System.out.println("\t f");
     }
 
     // EFFECTS: processes favourites user command
     private void processFavouritesCommand(String command) {
         if (command.equals("yes")) {
-            for (CollectionCentre c : result) {
+            for (CollectionCentre c : filtered.getCentres()) {
                 favList.addCollectionCentre(c);
             }
             System.out.println("Successfully added to your favourites list!");
         } else if (command.equals("no")) {
             System.out.println("Results were not added");
+        } else if (command.equalsIgnoreCase("f")) {
+            furtherFilterCriteriaMenu();
+            command = input.next();
+            processFurtherFilterCriteriaCommand(command);
         } else {
             System.out.println("Selection not valid");
         }
     }
 
+
     // EFFECTS: returns a clean list of results including only a collection centre's name, address + city, and phone
-    //          number if available
-    private List<String> cleanResults(List<CollectionCentre> results) {
+    //          number
+    private List<String> cleanResults(CollectionCentreHub results) {
+        List<String> clean = new ArrayList<>();
+
+        for (CollectionCentre c : results.getCentres()) {
+            clean.add(c.name + "   " + c.address + ", " + c.city + "  Phone: " + c.phone);
+        }
+        return clean;
+    }
+
+    // EFFECTS: returns a clean list of results including only a collection centre's name, address + city, and phone
+    //          number
+    private List<String> cleanResultsList(List<CollectionCentre> results) {
         List<String> clean = new ArrayList<>();
 
         for (CollectionCentre c : results) {
@@ -310,14 +321,12 @@ public class LocatorApp {
     //              1: "1 collection centre matches your criteria."
     //             >1: "x collection centres match your criteria."
     private void criteriaMessage() {
-        if (result.isEmpty()) {
+        if (filtered.getCentres().isEmpty()) {
             System.out.println("No collection centres match your criteria.");
+        } else if (filtered.getCentres().size() == 1) {
+            System.out.println("1 collection centre matches your criteria.");
         } else {
-            if (result.size() == 1) {
-                System.out.println("1 collection centre matches your criteria.");
-            } else {
-                System.out.println(result.size() + " collection centres match your criteria.");
-            }
+            System.out.println(filtered.getCentres().size() + " collection centres match your criteria.");
         }
     }
 

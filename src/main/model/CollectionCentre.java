@@ -11,7 +11,7 @@ public class CollectionCentre implements Writable {
     public String name;
     public String address;
     public String city;
-    public String phone; // unavailable if there is no phone number
+    public String phone; // "unavailable" if there is no phone number
     HealthAuthority healthAuthority;
     boolean needAppointment;
     boolean weekends; // true if center is open on Saturday, Sunday, or both

@@ -1,17 +1,5 @@
 {"centres": [
     {
-        "dt": false,
-        "a": true,
-        "r": false,
-        "address": "4500 Oak Street",
-        "c": true,
-        "city": "Vancouver",
-        "phone": "604-875-2154",
-        "w": true,
-        "name": "BC Children & Women Campus",
-        "ha": "PROVINCIAL"
-    },
-    {
         "dt": true,
         "a": false,
         "r": false,
@@ -21,42 +9,6 @@
         "phone": "unavailable",
         "w": true,
         "name": "St. Vincent",
-        "ha": "COASTAL"
-    },
-    {
-        "dt": false,
-        "a": false,
-        "r": false,
-        "address": "1290 Hornby Street",
-        "c": true,
-        "city": "Vancouver",
-        "phone": "unavailable",
-        "w": true,
-        "name": "City Centre UPCC",
-        "ha": "COASTAL"
-    },
-    {
-        "dt": false,
-        "a": true,
-        "r": false,
-        "address": "1145 Commercial Drive",
-        "c": true,
-        "city": "Vancouver",
-        "phone": "604-216-3138",
-        "w": true,
-        "name": "REACH UPCC",
-        "ha": "COASTAL"
-    },
-    {
-        "dt": false,
-        "a": false,
-        "r": false,
-        "address": "429 Alexander Street",
-        "c": false,
-        "city": "Vancouver",
-        "phone": "778-886-4081",
-        "w": false,
-        "name": "DTES COVID-19 Testing Site",
         "ha": "COASTAL"
     },
     {

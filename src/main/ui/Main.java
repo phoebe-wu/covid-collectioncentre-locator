@@ -1,7 +1,7 @@
 package ui;
 
 import model.CollectionCentre;
-import model.CollectionCentreHub;
+import model.CollectionCentreDatabase;
 import model.HealthAuthority;
 
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 1 - 5 and adds them to the collection centre database for the locator app
-    public static void initializeCollectionCentres1(CollectionCentreHub database) {
+    public static void initializeCollectionCentres1(CollectionCentreDatabase database) {
         CollectionCentre c1 = new CollectionCentre("Ridge Meadows", "153-11762 Laity Street",
                 "Maple Ridge", "unavailable", HealthAuthority.FRASER, false, false,
                 false, true, false);
@@ -43,7 +43,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 6 - 10 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres2(CollectionCentreHub database) {
+    public static void initializeCollectionCentres2(CollectionCentreDatabase database) {
         CollectionCentre c6 = new CollectionCentre("Peace Arch Hospital", "15521 Russell Avenue",
                 "White Rock", "604-542-4057", HealthAuthority.FRASER, false, true,
                 false, false, false);
@@ -68,7 +68,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 11 - 15 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres3(CollectionCentreHub database) {
+    public static void initializeCollectionCentres3(CollectionCentreDatabase database) {
         CollectionCentre c11 = new CollectionCentre("Tri-Cities COVID-19 Test Collection Centre",
                 "2796 Aberdeen Avenue", "Coquitlam", "unavailable", HealthAuthority.FRASER,
                 false, true, false, false, false);
@@ -93,7 +93,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 16 - 20 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres4(CollectionCentreHub database) {
+    public static void initializeCollectionCentres4(CollectionCentreDatabase database) {
         CollectionCentre c16 = new CollectionCentre("Salmon Arm Public Health Centre",
                 "851 16th Street N", "Salmon Arm", "250-833-4100", HealthAuthority.INTERIOR,
                 true, true, false, true, false);
@@ -118,7 +118,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 21 - 25 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres5(CollectionCentreHub database) {
+    public static void initializeCollectionCentres5(CollectionCentreDatabase database) {
 
         CollectionCentre c21 = new CollectionCentre("Golden & District Hospital", "835 9th Avenue S",
                 "Golden", "250-344-5271", HealthAuthority.INTERIOR, true, true,
@@ -145,7 +145,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 26 - 30 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres6(CollectionCentreHub database) {
+    public static void initializeCollectionCentres6(CollectionCentreDatabase database) {
 
         CollectionCentre c26 = new CollectionCentre("Kamloops Public Health", "519 Columbia Street",
                 "Kamloops", "250-851-7467", HealthAuthority.INTERIOR, true, true,
@@ -172,7 +172,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 31 - 35 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres7(CollectionCentreHub database) {
+    public static void initializeCollectionCentres7(CollectionCentreDatabase database) {
 
         CollectionCentre c31 = new CollectionCentre("Invermere District Hospital", "850 10th Avenue",
                 "Invermere", "250-341-5651", HealthAuthority.INTERIOR, true, true,
@@ -198,7 +198,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 36 - 40 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres8(CollectionCentreHub database) {
+    public static void initializeCollectionCentres8(CollectionCentreDatabase database) {
 
         CollectionCentre c36 = new CollectionCentre("Fort St. John Health Unit", "10115 110 Avenue",
                 "Fort St.John", "1-844-645-7811", HealthAuthority.NORTHERN, true, false,
@@ -224,7 +224,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 40 - 45 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres9(CollectionCentreHub database) {
+    public static void initializeCollectionCentres9(CollectionCentreDatabase database) {
         CollectionCentre c41 = new CollectionCentre("Lakes District Health Center", "744 Center Street",
                 "Burns Lake", "1-844-645-7811", HealthAuthority.NORTHERN, true, false,
                 false, true, true);
@@ -250,7 +250,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 46 - 50 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres10(CollectionCentreHub database) {
+    public static void initializeCollectionCentres10(CollectionCentreDatabase database) {
         CollectionCentre c46 = new CollectionCentre("McBride Hospital", "1136 5th Avenue", "McBride",
                 "1-844-645-7811", HealthAuthority.NORTHERN, true, true, false,
                 true, true);
@@ -276,7 +276,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 51 - 55 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres11(CollectionCentreHub database) {
+    public static void initializeCollectionCentres11(CollectionCentreDatabase database) {
         CollectionCentre c51 = new CollectionCentre("Northern Haida Gwaii Hospital and Health Centre",
                 "2520 Harrison Avenue", "Village of Masset", "1-844-645-7811",
                 HealthAuthority.NORTHERN, true, true, false, true,
@@ -302,7 +302,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 56 - 60 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres12(CollectionCentreHub database) {
+    public static void initializeCollectionCentres12(CollectionCentreDatabase database) {
         CollectionCentre c56 = new CollectionCentre("Atlin Health Centre", "164 Third Street",
                 "Atlin", "1-844-645-7811", HealthAuthority.NORTHERN, true, false,
                 false, true, true);
@@ -327,7 +327,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 61 - 65 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres13(CollectionCentreHub database) {
+    public static void initializeCollectionCentres13(CollectionCentreDatabase database) {
         CollectionCentre c61 = new CollectionCentre("Squamish Assessment Centre", "40456 Government Road",
                 "Squamish", "604-359-9559", HealthAuthority.COASTAL, false, true,
                 true, true, false);
@@ -352,7 +352,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 66 - 70 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres14(CollectionCentreHub database) {
+    public static void initializeCollectionCentres14(CollectionCentreDatabase database) {
         CollectionCentre c66 = new CollectionCentre("Sunshine Coast", "Provided after phoning",
                 "Sechelt", "604-740-1252", HealthAuthority.COASTAL, true, true,
                 false, true, false);
@@ -377,7 +377,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 71 - 75 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres15(CollectionCentreHub database) {
+    public static void initializeCollectionCentres15(CollectionCentreDatabase database) {
         CollectionCentre c71 = new CollectionCentre("Whistler Medical Clinic", "4380 Lorimer Road",
                 "Whistler", "604-210-5911", HealthAuthority.COASTAL, true, true,
                 false, true, false);
@@ -404,7 +404,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 76 - 80 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres16(CollectionCentreHub database) {
+    public static void initializeCollectionCentres16(CollectionCentreDatabase database) {
         CollectionCentre c76 = new CollectionCentre("North Vancouver COVID-19 Assessment Centre",
                 "255 Lloyd Avenue", "North Vancouver", "unavailable", HealthAuthority.COASTAL,
                 false, true, true, false, false);
@@ -429,7 +429,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 81 - 85 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres17(CollectionCentreHub database) {
+    public static void initializeCollectionCentres17(CollectionCentreDatabase database) {
         CollectionCentre c81 = new CollectionCentre("Port Hardy Hospital", "9120 Granville Street",
                 "Port Hardy", "1-844-901-8442", HealthAuthority.ISLAND, true, true,
                 false, true, false);
@@ -454,7 +454,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 86 - 90 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres18(CollectionCentreHub database) {
+    public static void initializeCollectionCentres18(CollectionCentreDatabase database) {
         CollectionCentre c86 = new CollectionCentre("Cowichan District Hospital", "3045 Gibbins Road",
                 "Duncan", "1-844-901-8442", HealthAuthority.ISLAND, true, true,
                 false, true, false);
@@ -479,7 +479,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 91 - 95 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres19(CollectionCentreHub database) {
+    public static void initializeCollectionCentres19(CollectionCentreDatabase database) {
         CollectionCentre c91 = new CollectionCentre("Sointula Health Centre", "25 2nd Street",
                 "Sointula", "1-844-901-8442", HealthAuthority.ISLAND, true, true,
                 false, true, false);
@@ -504,7 +504,7 @@ public class Main {
 
     // MODIFIES: database
     // EFFECTS: initializes collection centres 96 - 100 and adds them to the collection centre database for locator app
-    public static void initializeCollectionCentres20(CollectionCentreHub database) {
+    public static void initializeCollectionCentres20(CollectionCentreDatabase database) {
         CollectionCentre c96 = new CollectionCentre("Ditidaht First Nations, a Nuu-chah-nulth Community",
                 "479 Malachan Indian Reserve Road", "Ditidaht", "1-844-901-8442",
                 HealthAuthority.ISLAND, true, true, false, true, false);
@@ -530,7 +530,7 @@ public class Main {
     // MODIFIES: database
     // EFFECTS: runs all collection centre initialization methods to add all collection centres to the collection centre
     //          database for locator app
-    public static void initializeAllCollectionCentres(CollectionCentreHub database) {
+    public static void initializeAllCollectionCentres(CollectionCentreDatabase database) {
         initializeCollectionCentres1(database);
         initializeCollectionCentres2(database);
         initializeCollectionCentres3(database);

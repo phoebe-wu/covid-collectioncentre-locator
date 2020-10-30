@@ -1,7 +1,7 @@
 package ui;
 
 import model.CollectionCentre;
-import model.CollectionCentreHub;
+import model.CollectionCentreDatabase;
 import model.FavouritesList;
 import model.HealthAuthority;
 import persistence.JsonReader;
@@ -21,8 +21,8 @@ import static ui.Main.initializeAllCollectionCentres;
 public class LocatorApp {
     private static final String JSON_STORE = "./data/FavouritesList.json";
     private Scanner input;
-    private CollectionCentreHub database;
-    private CollectionCentreHub filtered;
+    private CollectionCentreDatabase database;
+    private CollectionCentreDatabase filtered;
     private FavouritesList favList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -50,7 +50,7 @@ public class LocatorApp {
                 runProgram = false;
             } else if (command.equals("v")) {
                 System.out.println(favList.sizeMessage());
-                System.out.println(cleanResultsList(favList.getCentres()));
+                System.out.println(cleanResults(favList.getCentres()));
             } else {
                 processSortCommand(command);
             }
@@ -62,10 +62,10 @@ public class LocatorApp {
     // MODIFIES: this
     // EFFECTS: initializes all collection centres into database
     private void initializeApp() {
-        database = new CollectionCentreHub();
+        database = new CollectionCentreDatabase();
         initializeAllCollectionCentres(database);
         input = new Scanner(System.in);
-        filtered = new CollectionCentreHub();
+        filtered = new CollectionCentreDatabase();
         favList = new FavouritesList("Favourites List");
     }
 
@@ -111,7 +111,7 @@ public class LocatorApp {
     private void doCityFilter() {
         System.out.println("Enter city you want to search for collection centres in");
         String city = input.next();
-        filtered = database.filterCityHub(city.replaceAll("\\s+", ""));
+        filtered = database.filterCity(city.replaceAll("\\s+", ""));
     }
 
     // MODIFIES: secondaryDatabase, result
@@ -122,17 +122,17 @@ public class LocatorApp {
         System.out.println("Enter the health authority you want to search for collection centres in");
         String ha = input.next();
         if (ha.equalsIgnoreCase("island")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.ISLAND);
+            filtered = database.filterHealthAuthority(HealthAuthority.ISLAND);
         } else if (ha.equalsIgnoreCase("coastal")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.COASTAL);
+            filtered = database.filterHealthAuthority(HealthAuthority.COASTAL);
         } else if (ha.equalsIgnoreCase("provincial")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.PROVINCIAL);
+            filtered = database.filterHealthAuthority(HealthAuthority.PROVINCIAL);
         } else if (ha.equalsIgnoreCase("northern")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.NORTHERN);
+            filtered = database.filterHealthAuthority(HealthAuthority.NORTHERN);
         } else if (ha.equalsIgnoreCase("fraser")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.FRASER);
+            filtered = database.filterHealthAuthority(HealthAuthority.FRASER);
         } else if (ha.equalsIgnoreCase("interior")) {
-            filtered = database.filterHealthAuthorityHub(HealthAuthority.INTERIOR);
+            filtered = database.filterHealthAuthority(HealthAuthority.INTERIOR);
         } else {
             System.out.println("Please enter 'island', 'coastal', 'provincial', 'northern', 'fraser', or 'interior'");
         }
@@ -151,7 +151,7 @@ public class LocatorApp {
     private void processFilterCommand(String command) {
         if (command.equals("no")) {
             criteriaMessage();
-            System.out.println(cleanResults(filtered));
+            System.out.println(cleanResults(filtered.getCentres()));
             addToFavouritesMenu();
             command = input.next();
             processFavouritesCommand(command);
@@ -214,7 +214,7 @@ public class LocatorApp {
     private void doAppointmentFilter(String command) {
         filtered = filtered.filterAppointment(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(filtered));
+        System.out.println(cleanResults(filtered.getCentres()));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -225,7 +225,7 @@ public class LocatorApp {
     private void doReferralFilter(String command) {
         filtered = filtered.filterReferral(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(filtered));
+        System.out.println(cleanResults(filtered.getCentres()));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -236,7 +236,7 @@ public class LocatorApp {
     private void doWeekendFilter(String command) {
         filtered = filtered.filterWeekend(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(filtered));
+        System.out.println(cleanResults(filtered.getCentres()));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -247,7 +247,7 @@ public class LocatorApp {
     private void doDriveThroughFilter(String command) {
         filtered = filtered.filterDriveThrough(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(filtered));
+        System.out.println(cleanResults(filtered.getCentres()));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -258,7 +258,7 @@ public class LocatorApp {
     private void doChildrenFilter(String command) {
         filtered = filtered.filterChildren(Boolean.parseBoolean(command));
         criteriaMessage();
-        System.out.println(cleanResults(filtered));
+        System.out.println(cleanResults(filtered.getCentres()));
         addToFavouritesMenu();
         command = input.next();
         processFavouritesCommand(command);
@@ -293,21 +293,9 @@ public class LocatorApp {
         }
     }
 
-
     // EFFECTS: returns a clean list of results including only a collection centre's name, address + city, and phone
     //          number
-    private List<String> cleanResults(CollectionCentreHub results) {
-        List<String> clean = new ArrayList<>();
-
-        for (CollectionCentre c : results.getCentres()) {
-            clean.add(c.name + "   " + c.address + ", " + c.city + "  Phone: " + c.phone);
-        }
-        return clean;
-    }
-
-    // EFFECTS: returns a clean list of results including only a collection centre's name, address + city, and phone
-    //          number
-    private List<String> cleanResultsList(List<CollectionCentre> results) {
+    private List<String> cleanResults(List<CollectionCentre> results) {
         List<String> clean = new ArrayList<>();
 
         for (CollectionCentre c : results) {

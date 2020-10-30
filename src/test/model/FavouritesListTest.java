@@ -54,18 +54,18 @@ public class FavouritesListTest {
     @Test
     void testSizeMessageEmpty() {
         favouritesList.removeCollectionCenter(c1);
-        assertEquals("There are no collection centres in your list", favouritesList.sizeMessage());
+        assertEquals("There are no collection centres in your list.", favouritesList.sizeMessage());
     }
 
     @Test
     void testSizeMessageOne() {
-        assertEquals("There is 1 collection centre in your list", favouritesList.sizeMessage());
+        assertEquals("There is 1 collection centre in your list.", favouritesList.sizeMessage());
     }
 
     @Test
     void testSizeMessageMany() {
         favouritesList.addCollectionCentre(c2);
-        assertEquals("There are 2 collection centres in your list", favouritesList.sizeMessage());
+        assertEquals("There are 2 collection centres in your list.", favouritesList.sizeMessage());
     }
 
     @Test

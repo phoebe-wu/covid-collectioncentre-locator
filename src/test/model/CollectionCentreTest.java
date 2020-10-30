@@ -11,9 +11,9 @@ class CollectionCentreTest {
     CollectionCentre c3;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         c1 = new CollectionCentre("Oceanside Health Centre", "489 Alberni Hwy", "Parksville",
-                "1-8448901-8442", HealthAuthority.ISLAND,
+                "1-844-901-8442", HealthAuthority.ISLAND,
                 true, true, false, true, false);
         c2 = new CollectionCentre("Peninsula Health Unit", "2170 Mt.Newton X Rd", "Saanichton",
                 "1-844-901-8442", HealthAuthority.ISLAND,
@@ -29,5 +29,15 @@ class CollectionCentreTest {
         assertEquals("4500 Oak Street", c3.getAddress());
         assertEquals("Saanichton", c2.getCity());
         assertEquals(HealthAuthority.ISLAND, c2.getHealthAuthority());
+    }
+
+    @Test
+    void testGetters() {
+        assertEquals("1-844-901-8442", c2.getPhone());
+        assertTrue(c1.isNeedAppointment());
+        assertTrue(c2.isWeekends());
+        assertFalse(c3.isDriveThrough());
+        assertTrue(c2.isChildren());
+        assertFalse(c3.isReferral());
     }
 }

@@ -7,6 +7,8 @@ import model.HealthAuthority;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +20,9 @@ import static ui.Main.initializeAllCollectionCentres;
 // Adapted from TellerApp and FitGymLife
 // Data persistence methods adapted from JsonSterilizationDemo
 // Represents a Covid-19 collection centre locator application
-public class LocatorApp {
+public class LocatorApp extends JFrame {
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 1000;
     private static final String JSON_STORE = "./data/FavouritesList.json";
     private Scanner input;
     private CollectionCentreDatabase database;
@@ -27,8 +31,10 @@ public class LocatorApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+
     // EFFECTS: runs the locator application
     public LocatorApp() throws FileNotFoundException {
+        super("BC Covid-19 Collection Centre Locator");
         runLocatorApp();
     }
 
@@ -39,6 +45,8 @@ public class LocatorApp {
         String command = null;
 
         initializeApp();
+        initializeGraphics();
+        initializeInteraction();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
@@ -69,6 +77,21 @@ public class LocatorApp {
         favList = new FavouritesList("Favourites List");
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes a MouseListener to be used in the JFrame
+    private void initializeInteraction() {
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the JFrame window where the LocatorApp will operate, and populates the tools
+    //          that will be used to search and filter collection centres
+    private void initializeGraphics() {
+        setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
 
     // EFFECTS: displays menu of sorting options to user
     private void initialLocationSortingMenu() {
@@ -313,6 +336,7 @@ public class LocatorApp {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: saves favourites list to file
     private void saveFavouritesList() {
         try {

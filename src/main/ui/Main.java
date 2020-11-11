@@ -7,13 +7,18 @@ import model.HealthAuthority;
 import java.io.FileNotFoundException;
 
 
+//public class Main {
+//    public static void main(String[] args) {
+//        try {
+//            new LocatorApp();
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Unable to run application: file not found");
+//        }
+//    }
+
 public class Main {
     public static void main(String[] args) {
-        try {
-            new LocatorApp();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+        new LocatorGUI();
     }
 
     // MODIFIES: database
@@ -552,5 +557,6 @@ public class Main {
         initializeCollectionCentres19(database);
         initializeCollectionCentres20(database);
     }
+
 
 }

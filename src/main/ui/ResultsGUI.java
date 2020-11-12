@@ -7,31 +7,78 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ui.Main.initializeAllCollectionCentres;
 
 public class ResultsGUI extends JPanel implements ListSelectionListener {
 
-    private JList results;
-    private DefaultListModel listModel;
-    private CollectionCentreDatabase database;
+    private CollectionCentreDatabase collectionCentreDatabase;
     private LocatorGUI locatorGUI;
+
+    private JList databaseJList;
+    private JList favouritesJList;
+    private DefaultListModel databaseListModel;
+    private DefaultListModel favouritesListModel;
+    private List selectedItems;
+
+    private JScrollPane scrollPane;
 
 
     public ResultsGUI(LocatorGUI locatorGUI) {
         super(new BorderLayout());
 
         this.locatorGUI = locatorGUI;
+        selectedItems = new ArrayList();
+        favouritesListModel = new DefaultListModel();
+
         initializeDatabase();
-        createResultsPanel();
+        updateFavourites();
+
+        createListPanel();
         createFavouritesPanel();
         createSearchPanel();
-
-        JToggleButton appointmentToggle = new JToggleButton("Appointment");
-        add(appointmentToggle, BorderLayout.EAST);
-
     }
 
+    // EFFECTS: initializes database fields and adds collection centres to collectionCentreDatabase & databaseListModel
+    private void initializeDatabase() {
+        collectionCentreDatabase = new CollectionCentreDatabase();
+        databaseListModel = new DefaultListModel();
+
+        initializeAllCollectionCentres(collectionCentreDatabase);
+        for (CollectionCentre c : collectionCentreDatabase.getCentres()) {
+            databaseListModel.addElement(cleanResults(c));
+        }
+
+        databaseJList = new JList(databaseListModel);
+        databaseJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        databaseJList.setSelectedIndex(0);
+        databaseJList.addListSelectionListener(this);
+        databaseJList.setVisibleRowCount(5);
+    }
+
+    // EFFECTS: initializes favourites list fields
+    private void updateFavourites() {
+        favouritesJList = new JList(favouritesListModel);
+        favouritesJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        favouritesJList.setSelectedIndex(0);
+        favouritesJList.addListSelectionListener(this);
+        favouritesJList.setVisibleRowCount(5);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Creates and populates scroll panel
+    private void createListPanel() {
+        scrollPane = new JScrollPane(databaseJList);
+        add(scrollPane, BorderLayout.CENTER);
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: creates and adds combo boxes for city search and health authority search
     private void createSearchPanel() {
         JPanel sidePanel = new JPanel();
         String[] cities = {"100 Mile House", "Abbotsford", "Alert Bay", "Ashcroft", "Atlin", "Bamfield", "Bella Bella",
@@ -47,45 +94,35 @@ public class ResultsGUI extends JPanel implements ListSelectionListener {
                 "Terrace", "Tofino", "Trail", "Tseshaht", "Tumbler Ridge", "Valemount", "Vancouver", "Vanderhoof",
                 "Vernon", "Victoria", "Village of Masset", "Whistler", "White Rock", "Williams Lake"};
         JComboBox citySearchBox = new JComboBox(cities);
-        sidePanel.add(citySearchBox, BorderLayout.PAGE_START);
         citySearchBox.setEditable(true);
 
         String[] healthAuthorities = {"Fraser", "Vancouver Coastal", "Northern", "Vancouver Island", "Interior",
                 "Provincial Health Services"};
         JComboBox healthAuthoritySearchBox = new JComboBox(healthAuthorities);
         healthAuthoritySearchBox.setSelectedIndex(5);
-        sidePanel.add(healthAuthoritySearchBox, BorderLayout.PAGE_END);
 
+        sidePanel.add(citySearchBox, BorderLayout.PAGE_START);
+        sidePanel.add(healthAuthoritySearchBox, BorderLayout.PAGE_END);
         add(sidePanel, BorderLayout.EAST);
     }
 
-    private void createResultsPanel() {
-        results = new JList(listModel);
-        results.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        results.setSelectedIndex(0);
-        results.addListSelectionListener(this);
-        results.setVisibleRowCount(5);
-        JScrollPane listScrollPane = new JScrollPane(results);
-        add(listScrollPane, BorderLayout.CENTER);
-    }
 
-    private void initializeDatabase() {
-        database = new CollectionCentreDatabase();
-        initializeAllCollectionCentres(database);
-        listModel = new DefaultListModel();
-        for (CollectionCentre c : database.getCentres()) {
-            listModel.addElement(cleanResults(c));
-        }
-    }
-
+    // MODIFIES: this
+    // EFFECTS: creates addToFavourites and ViewFavourites buttons
     private void createFavouritesPanel() {
-        // Create Favourite Buttons
         JPanel favouritesPanel = new JPanel();
 
         JButton addToFavouritesButton = new JButton("Add to Favourites List");
         favouritesPanel.add(addToFavouritesButton, BorderLayout.PAGE_START);
+        addToFavouritesButton.addActionListener(new AddToFavouritesListener());
+
         JButton viewFavouritesButton = new JButton("View Favourites List");
         favouritesPanel.add(viewFavouritesButton, BorderLayout.PAGE_END);
+        viewFavouritesButton.addActionListener(new ViewFavouritesButtonListener());
+
+        JButton removeFromFavouritesButton = new JButton("Remove from Favourites List");
+        favouritesPanel.add(removeFromFavouritesButton);
+        removeFromFavouritesButton.addActionListener(new RemoveFromFavouritesListener());
 
         add(favouritesPanel, BorderLayout.PAGE_END);
     }
@@ -98,18 +135,45 @@ public class ResultsGUI extends JPanel implements ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
+        // TODO: HUH?
+    }
 
-            if (results.getSelectedIndex() == -1) {
-                //No selection, disable fire button.
-
-
-            } else {
-                //Selection, enable the fire button.
-
+    private class AddToFavouritesListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            selectedItems = databaseJList.getSelectedValuesList();
+            for (Object c : selectedItems) {
+                if (!favouritesListModel.contains(c)) {
+                    favouritesListModel.addElement(c);
+                }
             }
         }
     }
 
+    private class ViewFavouritesButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int count = 0;
+            count += 1;
+            System.out.println(count);
+            if (count % 2 == 0) {
+                scrollPane.setViewportView(databaseJList);
+            } else {
+                updateFavourites();
+                scrollPane.setViewportView(favouritesJList);
+            }
+        }
+
+    }
+
+    private class RemoveFromFavouritesListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            selectedItems = favouritesJList.getSelectedValuesList();
+            for (Object c : selectedItems) {
+                favouritesListModel.removeElement(c);
+            }
+        }
+    }
 }
 

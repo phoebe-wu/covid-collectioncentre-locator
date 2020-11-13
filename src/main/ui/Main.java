@@ -104,7 +104,7 @@ public class Main {
                 true, true, false, true, false);
         database.addCollectionCentre(c16);
         CollectionCentre c17 = new CollectionCentre("Cariboo Memorial Hospital", "525 Proctor Street",
-                "Williams Lake,", "250-301-5006", HealthAuthority.INTERIOR, true, false,
+                "Williams Lake", "250-301-5006", HealthAuthority.INTERIOR, true, false,
                 false, true, false);
         database.addCollectionCentre(c17);
         CollectionCentre c18 = new CollectionCentre("Kootenay Lake Hospital", "3 View Street",
@@ -401,7 +401,7 @@ public class Main {
                 false, true, true, false, false);
         database.addCollectionCentre(c74);
         CollectionCentre c75 = new CollectionCentre("Vancouver Community College - Parking Lot",
-                "North Parking Lot #865 - Entrance between Keith and Glen Drive", "Vancouver",
+                "North Parking Lot #865", "Vancouver",
                 "unavailable", HealthAuthority.COASTAL, false, true, true,
                 false, false);
         database.addCollectionCentre(c75);

@@ -13,13 +13,13 @@ public class LocatorGUI extends JFrame {
 
     public LocatorGUI() {
         super("BC Covid-19 Collection Centre Locator");
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         titleLabel = new JLabel(TITLE);
         add(titleLabel, BorderLayout.NORTH);
 
-        resultsArea = new ResultsGUI(this);
+        resultsArea = new ResultsGUI();
         add(resultsArea, BorderLayout.WEST);
 
         pack();

@@ -305,25 +305,32 @@ public class MainGUI extends JPanel implements ListSelectionListener {
                 for (Object c : selectedItems) {
                     if (!favouritesListModel.contains(c)) {
                         favouritesListModel.addElement(c);
+                        showImage();
                     }
                 }
                 List<Object> selected = filteredJList.getSelectedValuesList();
                 for (Object c : selected) {
                     if (!favouritesListModel.contains(c)) {
                         favouritesListModel.addElement(c);
+                        showImage();
                     }
                 }
-                imagePanel.setVisible(true);
-                Timer timer = new Timer(1000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        imagePanel.setVisible(false);
-                    }
-                });
-                timer.start();
             }
         });
         return addToFavouritesButton;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: shows imagePanel for brief second
+    private void showImage() {
+        imagePanel.setVisible(true);
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                imagePanel.setVisible(false);
+            }
+        });
+        timer.start();
     }
 
 

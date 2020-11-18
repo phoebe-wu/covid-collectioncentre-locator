@@ -1,26 +1,26 @@
 {"centres": [
     {
         "dt": false,
-        "a": false,
+        "a": true,
         "r": false,
-        "address": "15521 Russell Avenue",
-        "c": false,
-        "city": "White Rock",
-        "phone": "604-542-4057",
-        "w": true,
-        "name": "Peace Arch Hospital",
-        "ha": "FRASER"
+        "address": "707 3rd Avenue",
+        "c": true,
+        "city": "Enderby",
+        "phone": "250-838-2450",
+        "w": false,
+        "name": "Enderby Health Centre",
+        "ha": "INTERIOR"
     },
     {
         "dt": false,
-        "a": false,
-        "r": false,
-        "address": "9090 Newman Road",
-        "c": false,
-        "city": "Chilliwack",
-        "phone": "604-702-4928",
-        "w": true,
-        "name": "Chilliwack COVID-19 Testing & Assessment Centre",
-        "ha": "FRASER"
+        "a": true,
+        "r": true,
+        "address": "744 Center Street",
+        "c": true,
+        "city": "Burns Lake",
+        "phone": "1-844-645-7811",
+        "w": false,
+        "name": "Lakes District Health Center",
+        "ha": "NORTHERN"
     }
 ]}

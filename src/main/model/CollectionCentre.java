@@ -5,7 +5,7 @@ import persistence.Writable;
 
 // Represents a Covid-19 Collection Center in BC
 // Data persistence methods adapted from JsonSterilizationDemo
-public class CollectionCentre implements Writable {
+public class CollectionCentre implements Writable  {
     public String name;
     public String address;
     public String city;
@@ -78,6 +78,20 @@ public class CollectionCentre implements Writable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CollectionCentre that = (CollectionCentre) o;
+
+        return name != null ? name.equals(that.name) : that.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 
     @Override
     public JSONObject toJson() {

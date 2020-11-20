@@ -91,7 +91,7 @@ public class Main {
                 false, true, false);
         database.addCollectionCentre(c14);
         CollectionCentre c15 = new CollectionCentre("100 Mile House South Cariboo Health Centre",
-                "555D Cedat Avenue", "100 Mile House", "250-395-7637", HealthAuthority.INTERIOR,
+                "555D Cedar Avenue", "100 Mile House", "250-395-7637", HealthAuthority.INTERIOR,
                 true, true, false, true, false);
         database.addCollectionCentre(c15);
     }
@@ -129,7 +129,7 @@ public class Main {
                 "Golden", "250-344-5271", HealthAuthority.INTERIOR, true, true,
                 true, true, false);
         database.addCollectionCentre(c21);
-        CollectionCentre c22 = new CollectionCentre("Boundary District Hospital", "x7649 22nd Street",
+        CollectionCentre c22 = new CollectionCentre("Boundary District Hospital", "7649 22nd Street",
                 "Grand Forks", "250-443-2120", HealthAuthority.INTERIOR, true, true,
                 false, true, false);
         database.addCollectionCentre(c22);

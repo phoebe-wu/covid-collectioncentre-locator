@@ -2,25 +2,73 @@
     {
         "dt": false,
         "a": true,
-        "r": false,
-        "address": "707 3rd Avenue",
+        "r": true,
+        "address": "3255 Hospital Road",
         "c": true,
-        "city": "Enderby",
-        "phone": "250-838-2450",
+        "city": "Vanderhoof",
+        "phone": "1-844-645-7811",
         "w": false,
-        "name": "Enderby Health Centre",
-        "ha": "INTERIOR"
+        "name": "St.John Hospital",
+        "ha": "NORTHERN"
+    },
+    {
+        "dt": false,
+        "a": false,
+        "r": false,
+        "address": "153-11762 Laity Street",
+        "c": true,
+        "city": "Maple Ridge",
+        "phone": "unavailable",
+        "w": false,
+        "name": "Ridge Meadows",
+        "ha": "FRASER"
     },
     {
         "dt": false,
         "a": true,
         "r": true,
-        "address": "744 Center Street",
+        "address": "543 Front Street",
         "c": true,
-        "city": "Burns Lake",
+        "city": "Quesnel",
         "phone": "1-844-645-7811",
-        "w": false,
-        "name": "Lakes District Health Center",
+        "w": true,
+        "name": "Urgent Primary Care Centre",
         "ha": "NORTHERN"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "640 Park Drive",
+        "c": true,
+        "city": "Clearwater",
+        "phone": "250-674-4107",
+        "w": true,
+        "name": "Clearwater COVID-19 Collection Centre",
+        "ha": "INTERIOR"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "951 Murray Street",
+        "c": true,
+        "city": "Lillooet",
+        "phone": "250-256-1381",
+        "w": false,
+        "name": "Lillooet Hospital Clinic",
+        "ha": "INTERIOR"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "851 16th Street N",
+        "c": true,
+        "city": "Salmon Arm",
+        "phone": "250-833-4100",
+        "w": true,
+        "name": "Salmon Arm Public Health Centre",
+        "ha": "INTERIOR"
     }
 ]}

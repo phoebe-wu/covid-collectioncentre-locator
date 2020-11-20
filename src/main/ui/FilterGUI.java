@@ -552,7 +552,8 @@ public class FilterGUI extends JPanel implements ListSelectionListener {
                 for (int i : selectedItems) {
                     CollectionCentre c = favouritesList.getCentres().get(i);
                     favouritesList.removeCollectionCenter(c);
-                    favouritesListModel.removeElement(c);
+                    favouritesListModel.remove(i);
+                    criteriaMessage.setText(favouritesList.sizeMessage());
                     showVerificationImage("Successfully Removed!");
                 }
             }
@@ -641,7 +642,7 @@ public class FilterGUI extends JPanel implements ListSelectionListener {
     // EFFECTS: presents filtered results to user in scrollPane
     private void presentFilteredResults(CollectionCentreDatabase filtered) {
         updateFiltered(filtered);
-        initializeFiltered();
+        filteredJList.setModel(filteredListModel);
         scrollPane.setViewportView(filteredJList);
     }
 

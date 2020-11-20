@@ -25,7 +25,6 @@ public class JsonReader {
     // EFFECTS: reads favourite list from file and returns it;
     // throws IOException if an error occurs reading data from file
     public FavouritesList read() throws IOException {
-
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseFavouritesList(jsonObject);

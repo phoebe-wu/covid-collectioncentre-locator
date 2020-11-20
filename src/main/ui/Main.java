@@ -337,7 +337,7 @@ public class Main {
                 "Squamish", "604-359-9559", HealthAuthority.COASTAL, false, true,
                 true, true, false);
         database.addCollectionCentre(c61);
-        CollectionCentre c62 = new CollectionCentre("St. Vincent", "4875 Heather Street",
+        CollectionCentre c62 = new CollectionCentre("St. Vincent Collection Centre", "4875 Heather Street",
                 "Vancouver", "unavailable", HealthAuthority.COASTAL, false, true,
                 true, false, false);
         database.addCollectionCentre(c62);

@@ -19,8 +19,8 @@ public class CollectionCentre implements Writable  {
 
 
     // EFFECTS: constructs a CollectionCenter with given name, address, city, and phone number with its indications on
-    // whether it requires appointments, open on weekends, offers drive through testing, tests children, and
-    // requires referral.
+    //          whether it requires appointments, open on weekends, offers drive through testing, tests children, and
+    //          requires referral.
     public CollectionCentre(String name, String address, String city, String phone, HealthAuthority ha,
                             boolean appointment, boolean weekends, boolean driveThrough, boolean children,
                             boolean referral) {

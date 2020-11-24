@@ -32,4 +32,10 @@ I am interested in this project because I think an application like this is rele
 - As a user, I want to be able to load my Favourites List from file.
 
 **Phase 4: Task 2**
-- FavouritesList addCollectionCentre & removeCollectionCentre are robust
+- FavouritesList addCollectionCentre & removeCollectionCentre are robust.
+
+**Phase 4: Task 3 Refactoring**
+- Make an abstract class for buttons in FilterGUI.
+- Try to reduce the number of fields in FilterGUI.
+- Implement observer/observable pattern between FavouritesList/Database and their respective list models and JLists.
+

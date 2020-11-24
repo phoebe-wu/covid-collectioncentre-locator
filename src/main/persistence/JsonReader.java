@@ -71,11 +71,7 @@ public class JsonReader {
         boolean c = nextCC.getBoolean("c");
         boolean r = nextCC.getBoolean("r");
         CollectionCentre cc = new CollectionCentre(name, address, city, phone, ha, a, w, dt, c, r);
-        try {
-            myList.addCollectionCentre(cc);
-        } catch (CentreAlreadyAddedException e) {
-            System.out.println("CollectionCentre already added");
-        }
+        myList.getCentres().add(cc);
     }
 
 

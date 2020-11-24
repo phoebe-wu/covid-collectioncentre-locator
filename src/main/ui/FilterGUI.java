@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.CentreAlreadyAddedException;
+import exceptions.CentreDoesNotExistException;
 import model.CollectionCentre;
 import model.CollectionCentreDatabase;
 import model.FavouritesList;
@@ -28,7 +30,7 @@ import static ui.Main.initializeAllCollectionCentres;
 // Adapted from C3 Traffic Lights Lecture Lab
 public class FilterGUI extends JPanel implements ListSelectionListener {
 
-    private static final Dimension SCROLL_PANEL_DIMENSION = new Dimension(750, 900);
+    private static final Dimension SCROLL_PANEL_DIMENSION = new Dimension(800, 900);
     private static final String JSON_STORE = "./data/FavouritesList.json";
     private final JsonReader jsonReader;
     private final JsonWriter jsonWriter;
@@ -551,7 +553,11 @@ public class FilterGUI extends JPanel implements ListSelectionListener {
                 int[] selectedItems = favouritesJList.getSelectedIndices();
                 for (int i : selectedItems) {
                     CollectionCentre c = favouritesList.getCentres().get(i);
-                    favouritesList.removeCollectionCenter(c);
+                    try {
+                        favouritesList.removeCollectionCentre(c);
+                    } catch (CentreDoesNotExistException centreDoesNotExistException) {
+                        System.out.println("CollectionCentre not in FavouritesList");
+                    }
                     favouritesListModel.remove(i);
                     criteriaMessage.setText(favouritesList.sizeMessage());
                     showVerificationImage("Successfully Removed!");
@@ -571,22 +577,28 @@ public class FilterGUI extends JPanel implements ListSelectionListener {
                 addFromJList(databaseJList, collectionCentreDatabase);
                 addFromJList(filteredJList, filtered);
             }
-
-            private void addFromJList(JList<CollectionCentre> databaseJList,
-                                      CollectionCentreDatabase collectionCentreDatabase) {
-                int[] selectedItems = databaseJList.getSelectedIndices();
-                for (int i : selectedItems) {
-                    CollectionCentre c = collectionCentreDatabase.getCentres().get(i);
-                    if (!favouritesList.getCentres().contains(c)) {
-                        favouritesList.addCollectionCentre(c);
-                        showVerificationImage("Successfully added to Favourites!");
-                    } else {
-                        showErrorImage("Already in Favourites");
-                    }
-                }
-            }
         });
         return addToFavouritesButton;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds selected CollectionCentres from JList to FavouritesList
+    private void addFromJList(JList<CollectionCentre> databaseJList,
+                              CollectionCentreDatabase collectionCentreDatabase) {
+        int[] selectedItems = databaseJList.getSelectedIndices();
+        for (int i : selectedItems) {
+            CollectionCentre c = collectionCentreDatabase.getCentres().get(i);
+            if (!favouritesList.getCentres().contains(c)) {
+                try {
+                    favouritesList.addCollectionCentre(c);
+                } catch (CentreAlreadyAddedException e) {
+                    showErrorImage("Already in Favourites");
+                }
+                showVerificationImage("Successfully added to Favourites!");
+            } else {
+                showErrorImage("Already in Favourites");
+            }
+        }
     }
 
     // MODIFIES: this

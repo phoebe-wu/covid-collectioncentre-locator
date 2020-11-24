@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.CentreAlreadyAddedException;
 import model.CollectionCentre;
 import model.FavouritesList;
 import model.HealthAuthority;
@@ -51,13 +52,17 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralFavouritesList() {
         try {
-            faves.addCollectionCentre(new CollectionCentre("REACH UPCC", "1145 Commercial Drive",
-                    "Vancouver", "604-216-3138", HealthAuthority.COASTAL, true, true,
-                    false, true, false));
-            faves.addCollectionCentre(new CollectionCentre("Pemberton Health Centre",
-                    "1403 Pemberton Portafe Road", "Pemberton", "604-894-6633 or 604-894-6939",
-                    HealthAuthority.COASTAL, false, false, false, true,
-                    false));
+            try {
+                faves.addCollectionCentre(new CollectionCentre("REACH UPCC", "1145 Commercial Drive",
+                        "Vancouver", "604-216-3138", HealthAuthority.COASTAL, true, true,
+                        false, true, false));
+                faves.addCollectionCentre(new CollectionCentre("Pemberton Health Centre",
+                        "1403 Pemberton Portafe Road", "Pemberton", "604-894-6633 or 604-894-6939",
+                        HealthAuthority.COASTAL, false, false, false, true,
+                        false));
+            } catch (CentreAlreadyAddedException e) {
+                System.out.println("Centre already added");
+            }
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralFavouritesList.json");
             writer.open();
             writer.write(faves);

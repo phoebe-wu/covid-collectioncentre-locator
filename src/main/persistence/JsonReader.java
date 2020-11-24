@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.CentreAlreadyAddedException;
 import model.CollectionCentre;
 import model.FavouritesList;
 import model.HealthAuthority;
@@ -70,7 +71,11 @@ public class JsonReader {
         boolean c = nextCC.getBoolean("c");
         boolean r = nextCC.getBoolean("r");
         CollectionCentre cc = new CollectionCentre(name, address, city, phone, ha, a, w, dt, c, r);
-        myList.addCollectionCentre(cc);
+        try {
+            myList.addCollectionCentre(cc);
+        } catch (CentreAlreadyAddedException e) {
+            System.out.println("CollectionCentre already added");
+        }
     }
 
 

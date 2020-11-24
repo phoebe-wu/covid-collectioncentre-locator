@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.CentreAlreadyAddedException;
 import model.CollectionCentre;
 import model.CollectionCentreDatabase;
 import model.FavouritesList;
@@ -18,7 +19,7 @@ import static ui.Main.initializeAllCollectionCentres;
 
 // Adapted from TellerApp and FitGymLife
 // Data persistence methods adapted from JsonSterilizationDemo
-// Represents a Covid-19 collection centre locator application
+// Represents a Covid-19 collection centre locator console application
 public class LocatorApp {
     private static final String JSON_STORE = "./data/FavouritesList.json";
     private Scanner input;
@@ -275,7 +276,11 @@ public class LocatorApp {
     private void processFavouritesCommand(String command) {
         if (command.equalsIgnoreCase("yes")) {
             for (CollectionCentre c : filtered.getCentres()) {
-                favList.addCollectionCentre(c);
+                try {
+                    favList.addCollectionCentre(c);
+                } catch (CentreAlreadyAddedException e) {
+                    System.out.println("CollectionCentre already in Favourites!");
+                }
             }
             System.out.println("Successfully added centres to your favourites list!");
         } else if (command.equalsIgnoreCase("no")) {

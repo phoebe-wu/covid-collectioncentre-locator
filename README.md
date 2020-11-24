@@ -30,3 +30,6 @@ I am interested in this project because I think an application like this is rele
 **Phase 2**
 - As a user, I want to be able to save my Favourites List.
 - As a user, I want to be able to load my Favourites List from file.
+
+**Phase 4: Task 2**
+- FavouritesList addCollectionCentre & removeCollectionCentre are robust

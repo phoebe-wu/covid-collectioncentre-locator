@@ -1,11 +1,12 @@
 package model;
 
+import exceptions.CentreAlreadyAddedException;
+import exceptions.CentreDoesNotExistException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 // Represents a list of the users favourited collection centres that can be referenced later
@@ -27,23 +28,30 @@ public class FavouritesList implements Writable {
 
     // EFFECTS: returns an unmodifiable list of centres in this favourites list
     public List<CollectionCentre> getCentres() {
-        return Collections.unmodifiableList(centres);
+        return centres;
     }
 
-    // REQUIRES: c is not already within centres
+
     // MODIFIES: this
-    // EFFECTS: adds collection centre to list
-    public void addCollectionCentre(CollectionCentre c) {
-        if (!centres.contains(c)) {
+    // EFFECTS: adds collection centre to list throws CentreAlreadyAddedException if CollectionCentre is already in
+    //          FavouritesList
+    public void addCollectionCentre(CollectionCentre c) throws CentreAlreadyAddedException {
+        if (centres.contains(c)) {
+            throw new CentreAlreadyAddedException("Collection Centre already added");
+        } else {
             centres.add(c);
         }
     }
 
-    // REQUIRES: c is within centers
     // MODIFIES: this
-    // EFFECTS: removes collection center from list
-    public void removeCollectionCenter(CollectionCentre c) {
-        centres.remove(c);
+    // EFFECTS: removes collection centre from list throws CentreDoesNotExistException if CollectionCentre is not in
+    //          FavouritesList
+    public void removeCollectionCentre(CollectionCentre c) throws CentreDoesNotExistException {
+        if (!centres.contains(c)) {
+            throw new CentreDoesNotExistException("Collection Centre not in Favourites");
+        } else {
+            centres.remove(c);
+        }
     }
 
     // EFFECTS: produces a message indicating size of list

@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.CentreAlreadyAddedException;
+import exceptions.CentreDoesNotExistException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ public class FavouritesListTest {
 
     @BeforeEach
     void setUp() {
-        favouritesList = new FavouritesList("Will Visit");
+        favouritesList = new FavouritesList("My Favourites List");
         c1 = new CollectionCentre("Oceanside Health Centre", "489 Alberni Hwy", "Parksville",
                 "1-8448901-8442", HealthAuthority.ISLAND,
                 true, true, false, true, false);
@@ -24,48 +26,79 @@ public class FavouritesListTest {
                 "604-875-2154", HealthAuthority.PROVINCIAL,
                 true, true, false, true, false);
 
-        favouritesList.addCollectionCentre(c1);
+        favouritesList.getCentres().add(c1);
     }
 
     @Test
     void testGetters() {
-        assertEquals("Will Visit", favouritesList.getName());
+        assertEquals("My Favourites List", favouritesList.getName());
         assertEquals(1, favouritesList.getCentres().size());
     }
 
     @Test
-    void testAddCollectionCentre() {
-        favouritesList.addCollectionCentre(c2);
+    void testAddCollectionCentreNoException() {
+        try {
+            favouritesList.addCollectionCentre(c2);
+        } catch (CentreAlreadyAddedException e) {
+            fail("Exception should not have been thrown");
+        }
         assertEquals(2, favouritesList.length());
     }
 
     @Test
-    void testAddCollectionCentreAlreadyExists() {
-        favouritesList.addCollectionCentre(c1);
+    void testAddCollectionCentreException() {
+        try {
+            favouritesList.addCollectionCentre(c1);
+            fail("Exception should have been thrown");
+        } catch (CentreAlreadyAddedException e) {
+            // pass
+        }
         assertEquals(1, favouritesList.length());
     }
 
     @Test
-    void testRemoveCollectionCentre() {
-        favouritesList.removeCollectionCenter(c2);
+    void testRemoveCollectionCentreException() {
+        try {
+            favouritesList.removeCollectionCentre(c2);
+            fail("Exception should have been thrown");
+        } catch (CentreDoesNotExistException e) {
+            // pass
+        }
         assertEquals(1, favouritesList.length());
+    }
+
+    @Test
+    void testRemoveCollectionCentreNoException() {
+        try {
+            favouritesList.removeCollectionCentre(c1);
+        } catch (CentreDoesNotExistException e) {
+            fail("Exception should not have been thrown");
+        }
     }
 
     @Test
     void testSizeMessageEmpty() {
-        favouritesList.removeCollectionCenter(c1);
-        assertEquals("There are no collection centres in your list.", favouritesList.sizeMessage());
+        try {
+            favouritesList.removeCollectionCentre(c1);
+        } catch (CentreDoesNotExistException e) {
+            fail("Exception should not have been thrown");
+        }
+        assertEquals("There are no collection centres in your favourites list.", favouritesList.sizeMessage());
     }
 
     @Test
     void testSizeMessageOne() {
-        assertEquals("There is 1 collection centre in your list.", favouritesList.sizeMessage());
+        assertEquals("There is 1 collection centre in your favourites list.", favouritesList.sizeMessage());
     }
 
     @Test
     void testSizeMessageMany() {
-        favouritesList.addCollectionCentre(c2);
-        assertEquals("There are 2 collection centres in your list.", favouritesList.sizeMessage());
+        try {
+            favouritesList.addCollectionCentre(c2);
+        } catch (CentreAlreadyAddedException e) {
+            fail("Exception should not have been thrown");
+        }
+        assertEquals("There are 2 collection centres in your favourites list.", favouritesList.sizeMessage());
     }
 
     @Test

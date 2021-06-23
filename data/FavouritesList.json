@@ -1,0 +1,74 @@
+{"centres": [
+    {
+        "dt": true,
+        "a": false,
+        "r": false,
+        "address": "6820 Gilbert Road",
+        "c": false,
+        "city": "Richmond",
+        "phone": "unavailable",
+        "w": true,
+        "name": "Richmond COVID Collection Centre",
+        "ha": "COASTAL"
+    },
+    {
+        "dt": true,
+        "a": false,
+        "r": false,
+        "address": "North Parking Lot #865",
+        "c": false,
+        "city": "Vancouver",
+        "phone": "unavailable",
+        "w": true,
+        "name": "Vancouver Community College - Parking Lot",
+        "ha": "COASTAL"
+    },
+    {
+        "dt": true,
+        "a": false,
+        "r": false,
+        "address": "4875 Heather Street",
+        "c": false,
+        "city": "Vancouver",
+        "phone": "unavailable",
+        "w": true,
+        "name": "St. Vincent Collection Centre",
+        "ha": "COASTAL"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "555D Cedar Avenue",
+        "c": true,
+        "city": "100 Mile House",
+        "phone": "250-395-7637",
+        "w": true,
+        "name": "100 Mile House South Cariboo Health Centre",
+        "ha": "INTERIOR"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "1665 Grant Avenue",
+        "c": true,
+        "city": "Nanaimo",
+        "phone": "1-844-901-8442",
+        "w": true,
+        "name": "Public Health Building",
+        "ha": "ISLAND"
+    },
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "3 View Street",
+        "c": true,
+        "city": "Nelson",
+        "phone": "250-551-7500",
+        "w": true,
+        "name": "Kootenay Lake Hospital",
+        "ha": "INTERIOR"
+    }
+]}

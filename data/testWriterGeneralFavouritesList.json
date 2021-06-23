@@ -1,0 +1,26 @@
+{"centres": [
+    {
+        "dt": false,
+        "a": true,
+        "r": false,
+        "address": "1145 Commercial Drive",
+        "c": true,
+        "city": "Vancouver",
+        "phone": "604-216-3138",
+        "w": true,
+        "name": "REACH UPCC",
+        "ha": "COASTAL"
+    },
+    {
+        "dt": false,
+        "a": false,
+        "r": false,
+        "address": "1403 Pemberton Portafe Road",
+        "c": true,
+        "city": "Pemberton",
+        "phone": "604-894-6633 or 604-894-6939",
+        "w": false,
+        "name": "Pemberton Health Centre",
+        "ha": "COASTAL"
+    }
+]}
